@@ -9,29 +9,33 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "quickReserve", "quickReserv
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{7E27EC64-45C8-4BCA-9B4B-9029CAFAB553}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QuickReserve.API", "src\quickReserve\QuickReserve.API\QuickReserve.API.csproj", "{E4B990AA-24C4-4EA9-B258-42C8511094E7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "QuickReserve.API", "src\quickReserve\QuickReserve.API\QuickReserve.API.csproj", "{E4B990AA-24C4-4EA9-B258-42C8511094E7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QuickReserve.Application", "src\quickReserve\QuickReserve.Application\QuickReserve.Application.csproj", "{FBB5F9A3-988A-46D3-AEF3-8EDDA74C1BF8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "QuickReserve.Application", "src\quickReserve\QuickReserve.Application\QuickReserve.Application.csproj", "{FBB5F9A3-988A-46D3-AEF3-8EDDA74C1BF8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QuickReserve.Domain", "src\quickReserve\QuickReserve.Domain\QuickReserve.Domain.csproj", "{F4C06960-FCDC-4CCB-B991-37526D1E3AF2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "QuickReserve.Domain", "src\quickReserve\QuickReserve.Domain\QuickReserve.Domain.csproj", "{F4C06960-FCDC-4CCB-B991-37526D1E3AF2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QuickReserve.Infrastructure", "src\quickReserve\QuickReserve.Infrastructure\QuickReserve.Infrastructure.csproj", "{6EB9A6D0-1EB3-470A-A0A5-284C1E6652A4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "QuickReserve.Infrastructure", "src\quickReserve\QuickReserve.Infrastructure\QuickReserve.Infrastructure.csproj", "{6EB9A6D0-1EB3-470A-A0A5-284C1E6652A4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QuickReserve.Persistence", "src\quickReserve\QuickReserve.Persistence\QuickReserve.Persistence.csproj", "{0649EFAD-A5DA-4E53-A60A-1D1C262BAFC8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "QuickReserve.Persistence", "src\quickReserve\QuickReserve.Persistence\QuickReserve.Persistence.csproj", "{0649EFAD-A5DA-4E53-A60A-1D1C262BAFC8}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "core", "core", "{17D6987A-1B61-4838-BE8E-5A7E12A2B644}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Core.Results", "src\core\Core.Results\Core.Results.csproj", "{1BBFBCDA-478A-4E63-AA14-2FC216D006B2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Core.Results", "src\core\Core.Results\Core.Results.csproj", "{1BBFBCDA-478A-4E63-AA14-2FC216D006B2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Core.Constants", "src\core\Core.Constants\Core.Constants.csproj", "{4801489F-8C2D-4D4F-91A2-201B221AD8AA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Core.Constants", "src\core\Core.Constants\Core.Constants.csproj", "{4801489F-8C2D-4D4F-91A2-201B221AD8AA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Core.CrossCuttingConcerns", "src\core\Core.CrossCuttingConcerns\Core.CrossCuttingConcerns.csproj", "{FF97C44E-A2DA-40E9-A654-164839F3AFEA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Core.CrossCuttingConcerns", "src\core\Core.CrossCuttingConcerns\Core.CrossCuttingConcerns.csproj", "{FF97C44E-A2DA-40E9-A654-164839F3AFEA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Core.Localization", "src\core\Core.Localization\Core.Localization.csproj", "{854AAFD4-468A-44CD-AF94-B98045E6ED9E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Core.Localization", "src\core\Core.Localization\Core.Localization.csproj", "{854AAFD4-468A-44CD-AF94-B98045E6ED9E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Core.Persistence", "src\core\Core.Persistence\Core.Persistence.csproj", "{18408B97-3DB9-4D3F-96DD-AB3A705AB62C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Core.Persistence", "src\core\Core.Persistence\Core.Persistence.csproj", "{18408B97-3DB9-4D3F-96DD-AB3A705AB62C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Core.JWT", "src\core\Core.JWT\Core.JWT.csproj", "{545125E5-097E-4E55-AE69-483449ED813E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Core.JWT", "src\core\Core.JWT\Core.JWT.csproj", "{545125E5-097E-4E55-AE69-483449ED813E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Core.Requests", "src\core\Core.Requests\Core.Requests.csproj", "{EC9E6794-DC49-4DB1-AC18-C7DB62B4F17F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Core.Behaviors", "src\core\Core.Behaviors\Core.Behaviors.csproj", "{405CBC30-6A32-4253-B7BE-6B6C8CBB21AA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -83,6 +87,14 @@ Global
 		{545125E5-097E-4E55-AE69-483449ED813E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{545125E5-097E-4E55-AE69-483449ED813E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{545125E5-097E-4E55-AE69-483449ED813E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EC9E6794-DC49-4DB1-AC18-C7DB62B4F17F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EC9E6794-DC49-4DB1-AC18-C7DB62B4F17F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EC9E6794-DC49-4DB1-AC18-C7DB62B4F17F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EC9E6794-DC49-4DB1-AC18-C7DB62B4F17F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{405CBC30-6A32-4253-B7BE-6B6C8CBB21AA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{405CBC30-6A32-4253-B7BE-6B6C8CBB21AA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{405CBC30-6A32-4253-B7BE-6B6C8CBB21AA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{405CBC30-6A32-4253-B7BE-6B6C8CBB21AA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -102,6 +114,8 @@ Global
 		{854AAFD4-468A-44CD-AF94-B98045E6ED9E} = {17D6987A-1B61-4838-BE8E-5A7E12A2B644}
 		{18408B97-3DB9-4D3F-96DD-AB3A705AB62C} = {17D6987A-1B61-4838-BE8E-5A7E12A2B644}
 		{545125E5-097E-4E55-AE69-483449ED813E} = {17D6987A-1B61-4838-BE8E-5A7E12A2B644}
+		{EC9E6794-DC49-4DB1-AC18-C7DB62B4F17F} = {17D6987A-1B61-4838-BE8E-5A7E12A2B644}
+		{405CBC30-6A32-4253-B7BE-6B6C8CBB21AA} = {17D6987A-1B61-4838-BE8E-5A7E12A2B644}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {B1AAD053-1B4C-41A8-A25B-C577660DEA63}
