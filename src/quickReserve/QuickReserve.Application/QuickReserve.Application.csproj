@@ -8,10 +8,24 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\core\Core.Constants\Core.Constants.csproj" />
+    <ProjectReference Include="..\..\core\Core.CrossCuttingConcerns\Core.CrossCuttingConcerns.csproj" />
     <ProjectReference Include="..\..\core\Core.JWT\Core.JWT.csproj" />
     <ProjectReference Include="..\..\core\Core.Persistence\Core.Persistence.csproj" />
     <ProjectReference Include="..\..\core\Core.Results\Core.Results.csproj" />
     <ProjectReference Include="..\QuickReserve.Domain\QuickReserve.Domain.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Features\UserOperationClaims\Commands\Delete\" />
+    <Folder Include="Features\UserOperationClaims\Commands\Update\" />
+    <Folder Include="Features\UserOperationClaims\Models\" />
+    <Folder Include="Features\UserOperationClaims\Validations\" />
+    <Folder Include="Features\UserOperationClaims\Queries\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="13.0.1" />
+    <PackageReference Include="MediatR" Version="12.4.0" />
   </ItemGroup>
 
 </Project>

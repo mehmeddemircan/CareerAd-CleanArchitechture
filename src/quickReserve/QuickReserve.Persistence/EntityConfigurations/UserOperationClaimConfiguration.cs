@@ -23,7 +23,7 @@ namespace QuickReserve.Persistence.EntityConfigurations
 
        
             builder.HasOne(uoc => uoc.User)
-                   .WithMany(u => u.UserOperationClaims)
+                   .WithMany()
                    .HasForeignKey(uoc => uoc.UserId)
                    .OnDelete(DeleteBehavior.Restrict);
 

@@ -1,5 +1,6 @@
 ﻿using Core.JWT;
 using Microsoft.Extensions.DependencyInjection;
+using QuickReserve.Application.Features.UserOperationClaims.Rules;
 using QuickReserve.Application.Services.AuthService;
 using QuickReserve.Application.Services.UserService;
 using System;
@@ -16,9 +17,11 @@ namespace QuickReserve.Application
         public static IServiceCollection AddApplicationServices(this IServiceCollection services)
         {
 
-            //services.AddAutoMapper(Assembly.GetExecutingAssembly());
-            //services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(Assembly.GetExecutingAssembly()));
+            services.AddAutoMapper(Assembly.GetExecutingAssembly());
+            services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(Assembly.GetExecutingAssembly()));
 
+
+            services.AddScoped<UserOperationClaimBusinessRules>();
 
 
             services.AddScoped<ITokenHelper, JwtHelper>(); 

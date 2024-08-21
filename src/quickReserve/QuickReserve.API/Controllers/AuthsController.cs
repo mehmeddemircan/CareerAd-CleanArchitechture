@@ -1,5 +1,7 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using MediatR;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using QuickReserve.Application.Features.UserOperationClaims.Commands.Create;
 using QuickReserve.Application.Services.AuthService;
 using QuickReserve.Domain.AuthDto;
 
@@ -7,7 +9,7 @@ namespace QuickReserve.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class AuthsController : ControllerBase
+    public class AuthsController : BaseController
     {
         private IAuthService _authService;
 
@@ -35,7 +37,7 @@ namespace QuickReserve.API.Controllers
         }
 
         [HttpPost("register")]
-        public ActionResult Register(UserForRegisterDto userForRegisterDto)
+        public async Task<IActionResult> Register(UserForRegisterDto userForRegisterDto)
         {
             var userExists = _authService.UserExists(userForRegisterDto.Email);
             if (!userExists.Success)
@@ -48,6 +50,20 @@ namespace QuickReserve.API.Controllers
 
             if (result.Success)
             {
+                // Kullanıcı başarılı bir şekilde kayıt olduktan sonra rol ekleme işlemi
+                var createUserOperationClaimCommand = new CreateUserOperationClaimCommand
+                {
+                    UserId = registerResult.Data.Id,
+                    OperationClaimId = 1
+                };
+
+                var roleResult = await Mediator.Send(createUserOperationClaimCommand);
+
+                if (!roleResult.Success)
+                {
+                    return BadRequest(roleResult.Message);
+                }
+
                 return Ok(result);
             }
 

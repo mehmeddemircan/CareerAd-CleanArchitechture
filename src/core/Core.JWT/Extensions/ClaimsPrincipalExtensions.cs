@@ -19,5 +19,10 @@ namespace Core.JWT.Extensions
         {
             return claimsPrincipal?.Claims(ClaimTypes.Role);
         }
+
+        public static int GetUserId(this ClaimsPrincipal claimsPrincipal)
+        {
+            return Convert.ToInt32(claimsPrincipal?.Claims(ClaimTypes.NameIdentifier)?.FirstOrDefault());
+        }
     }
 }
