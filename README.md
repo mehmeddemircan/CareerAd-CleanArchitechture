@@ -32,3 +32,10 @@ using (var context = new BaseDbContext())
 
 Bu yüzden, DbContext nesnesini using bloğu içinde kullanmak, kaynakların doğru ve güvenli bir şekilde yönetilmesini sağlar.
 
+Entity Type Configuration Bilgileri 
+
+DeleteBehavior.Cascade: Ana tablodan bir kayıt silindiğinde, ilişkili alt tablo kayıtları otomatik olarak silinir.
+DeleteBehavior.Restrict: Ana tablodan bir kayıt silinmek istendiğinde, ilişkili alt tablo kayıtları varsa silme işlemi engellenir.
+
+Bu ayarlar, veritabanı bütünlüğünü korumak ve veri silme işlemlerinin etkisini kontrol etmek için önemlidir.
+
