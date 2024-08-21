@@ -54,7 +54,7 @@ namespace QuickReserve.API.Controllers
                 var createUserOperationClaimCommand = new CreateUserOperationClaimCommand
                 {
                     UserId = registerResult.Data.Id,
-                    OperationClaimId = 1
+                    OperationClaimId = 2
                 };
 
                 var roleResult = await Mediator.Send(createUserOperationClaimCommand);
