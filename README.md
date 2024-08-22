@@ -50,6 +50,21 @@ Ana tablodan bir kayıt silindiğinde, ilişkili alt tablo kayıtları otomatik 
 # DeleteBehavior.Restrict
 Ana tablodan bir kayıt silinmek istendiğinde, ilişkili alt tablo kayıtları varsa silme işlemi engellenir.
 
+```csharp
+ builder.HasOne(uoc => uoc.User)
+        .WithMany()
+        .HasForeignKey(uoc => uoc.UserId)
+        .OnDelete(DeleteBehavior.Restrict);
+
+ builder.HasOne(uoc => uoc.OperationClaim)
+        .WithMany()
+        .HasForeignKey(uoc => uoc.OperationClaimId)
+        .OnDelete(DeleteBehavior.Restrict);
+
+    // yada 
+         .OnDelete(DeleteBehavior.Cascade); 
+```
+
 Bu ayarlar, veritabanı bütünlüğünü korumak ve veri silme işlemlerinin etkisini kontrol etmek için önemlidir.
 
 # Global Exception Handling nedir ?
@@ -309,3 +324,303 @@ Business Rules (İş Kuralları), bir iş sürecinin nasıl işleyeceğini ve i�
   }
 ```
 
+## JWT'nin Çalışma Prensibi nasıldır ? 
+
+JWT ( Json web token )  web uygulamaları arasında güvenli veri iletimi için kullanılan bir açık standarttır. JWT, genellikle kimlik doğrulama ve yetkilendirme amacıyla kullanılır. JSON formatında kodlanmış bir tokendır 
+
+1. **Token Oluşturma:**
+   - Kullanıcı giriş yaptıktan sonra, kimlik doğrulama işlemi başarılı olursa sunucu, bir JWT oluşturur. Bu token, kullanıcı bilgilerini ve yetkilendirme bilgilerini içerir.
+   - Token, başlık, yük ve imzadan oluşur ve Base64Url ile kodlanır.
+
+2. **Token'ın İletilmesi:**
+   - JWT, genellikle HTTP başlıklarında (örneğin, `Authorization: Bearer <token>`) veya çerezlerde (`cookies`) gönderilir.
+
+3. **Token'ın Doğrulanması:**
+   - Sunucu, token'ı aldığında önce imzayı doğrular. Eğer imza geçerliyse, token'ın içeriği (payload) okunur ve geçerlilik süresi kontrol edilir.
+   - Token geçerli ve süresi dolmamışsa, kullanıcının kimliği doğrulanmış ve gerekli yetkilendirme yapılmış olur.
+
+4. **Kullanıcı Erişimi:**
+   - Kullanıcı JWT'yi kullanarak çeşitli API'lere erişebilir. Sunucu, her istekte JWT'yi doğrular ve kullanıcının yetkilerini kontrol eder.
+
+## Örnek JWT
+
+Bir JWT'nin yapısı genellikle şu şekildedir:
+```csharp
+eyJhbGciOiAiSFMyNTYiLCAidHlwIjogIkpXVCJ9.eyJzdWIiOiAiMTIzNDU2Nzg5MCIsICJuYW1lIjogIkpvaG4gRG9lIiwgImFkbWluIjogdHJ1ZX0.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c
+```
+- **İlk Kısım (Header):** `eyJhbGciOiAiSFMyNTYiLCAidHlwIjogIkpXVCJ9`
+- **İkinci Kısım (Payload):** `eyJzdWIiOiAiMTIzNDU2Nzg5MCIsICJuYW1lIjogIkpvaG4gRG9lIiwgImFkbWluIjogdHJ1ZX0`
+- **Üçüncü Kısım (Signature):** `SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c`
+
+## Özet
+
+- **JWT**, JSON formatında kodlanmış, güvenli veri iletimi sağlayan bir token'dır.
+- **Header**, **Payload** ve **Signature** bileşenlerinden oluşur.
+- **Kimlik doğrulama** ve **yetkilendirme** işlemleri için yaygın olarak kullanılır.
+- **Token oluşturma**, **iletişim** ve **doğrulama** süreçleri ile güvenli veri aktarımı sağlar.
+
+
+# ASP.NET Core'da Extensions nedir ? Nasıl Çalışır ? 
+
+**ASP.NET Core'da extensions** (genişletmeler), uygulamanın çeşitli bileşenlerine ek işlevsellik eklemek için kullanılan önemli yapı taşlarıdır. Bu genişletmeler, uygulamanın yapılandırmasını, servislerini ve diğer özelliklerini kolayca özelleştirmenizi sağlar. İki ana türde kullanılırlar: **extension methods** ve **extension services**.
+
+## 1. Extension Methods (Genişletme Metotları)
+
+**Extension methods** (genişletme metotları), mevcut sınıflara yeni yöntemler eklemenize olanak tanır. Bu yöntemler, sınıfların orijinal kodunu değiştirmeden eklenir ve kullanılır. Genişletme metotları, genellikle `static` bir sınıf içinde tanımlanır ve `this` anahtar kelimesiyle belirtilen sınıfa eklenir.
+
+### Örnek
+
+```csharp
+public static class StringExtensions
+{
+    public static bool IsNullOrEmpty(this string str)
+    {
+        return string.IsNullOrEmpty(str);
+    }
+}
+
+// Kullanımı:
+string myString = null;
+bool isEmpty = myString.IsNullOrEmpty(); // true
+```
+
+## 2. Extension Services (Genişletme Servisleri)
+**Extension services**  (genişletme servisleri), ASP.NET Core uygulamalarında servisleri yapılandırmak için kullanılır. Genellikle Startup sınıfında yer alan ConfigureServices metodunda tanımlanır ve uygulamanın servis koleksiyonuna eklenir. Bu, ASP.NET Core'un bağımlılık enjeksiyon (DI) sistemine yeni servisler eklemenizi sağlar.
+
+### Ornek 
+```csharp
+public static class ServiceCollectionExtensions
+{
+    public static IServiceCollection AddCustomServices(this IServiceCollection services)
+    {
+        services.AddTransient<IMyService, MyService>();
+        services.AddScoped<IOtherService, OtherService>();
+        return services;
+    }
+}
+
+
+```
+İşlevlik kazanması için Program.cs ye eklenmesi de gerekiyordur
+```csharp
+//Yukarida extension servisimizin entegresi 
+builder.Services.AddCustomServices();
+```
+
+# Yazılım Geliştirme Döngüsü
+
+Yazılım geliştirme döngüsü (SDLC - Software Development Life Cycle), yazılım projelerini planlamak, geliştirmek ve bakımını yapmak için kullanılan bir süreçtir.
+
+Adımları aşağıda ki gibidir 
+  
+## 1. Gereksinim Analizi
+Gereksinim analizi aşamasında, proje için gerekli olan tüm gereksinimler toplanır ve analiz edilir.
+## 2. Tasarım
+Tasarım aşamasında, yazılımın nasıl çalışacağına dair teknik ve sistem tasarımları yapılır.
+## 3. Geliştirme
+Geliştirme aşamasında, tasarım doğrultusunda yazılım kodlanır.
+## 4. Test
+Test aşamasında, yazılımın hatalarını bulmak ve işlevselliğini doğrulamak için testler yapılır
+## 5. Dağıtım
+Dağıtım aşamasında, yazılım canlı ortamda kullanıma sunulur.
+## 6. Bakım
+Bakım aşamasında, yazılımın güncellenmesi, hataların düzeltilmesi ve performansının iyileştirilmesi sağlanır.
+
+
+## IIncludableQueryable Nedir ?
+IIncludableQueryable, Entity Framework Core'da kullanılır ve ilişkili verileri sorgulamak için kullanılır. Özellikle, bir varlıkla ilişkili diğer varlıkları içermesi gereken sorgularda kullanılır.
+
+- Özellikler:
+İlişkili verilerle birlikte ana varlıkları sorgulamak için Include() ve ThenInclude() metodlarını destekler.
+
+örnek kod 
+```csharp
+using Microsoft.EntityFrameworkCore;
+using System.Linq;
+
+var usersWithOrders = context.Users
+    .Include(u => u.Orders) // Kullanıcıyla ilişkili siparişleri de getir
+    .ToList();
+
+```
+
+## SoftDelete Nedir ? 
+
+Soft delete (yumuşak silme), veritabanında bir kaydın fiziksel olarak silinmemesi, ancak kullanım dışı veya görünmez hale getirilmesi yöntemidir. Bu yöntem, verilerin geri getirilebilmesi veya arşivlenmesi gerektiğinde kullanılır.
+
+### SoftDelete Nasıl Çalışır?
+Soft delete, genellikle bir kaydın belirli bir durumunu (örneğin, silinmiş olduğunu) göstermek için ek bir alan kullanarak gerçekleştirilir. Bu alan genellikle bir boolean değer (IsDeleted) veya bir tarih (DeletedAt) olabilir. Silme işlemi yapıldığında, bu alan güncellenir ve kaydın silinmiş olduğu işaretlenir, ancak kayıt veritabanında fiziksel olarak kalır.
+
+Avantajlar
+- Geri Getirme: Yanlışlıkla silinen veriler geri getirilebilir.
+- Veri Tarihçesi: Silinen verilerin tarihçesi korunabilir.
+- Denetim: Silme işlemi denetlenebilir ve kaydedilebilir.
+
+Dezavantajlar
+- Performans: Silinmiş kayıtların da veritabanında kalması, sorgu performansını etkileyebilir.
+- Veri Büyüklüğü: Veritabanı boyutu, silinmiş kayıtlarla büyüyebilir.
+- Uygulama Karmaşıklığı: Yazılım mantığının karmaşıklığını artırabilir çünkü sorgular ve işlemler, silinmiş kayıtları göz önünde bulunduracak şekilde tasarlanmalıdır.
+
+Soft delete, genellikle veri kaybını önlemek ve veri yönetimini daha esnek hale getirmek için kullanılır.
+
+## LINQ Nedir ve neden kullanılır ? 
+
+LINQ (Language Integrated Query), .NET dillerinde (C#, VB.NET, F# gibi) veri kaynaklarını sorgulamak için kullanılan bir özellik setidir. LINQ, veri sorgularını doğrudan dil içinde yazmanıza olanak tanır ve veri sorgulama kodunu daha okunabilir ve yazılması kolay hale getirir.
+
+
+- **Sorgulama Kolaylığı**: LINQ, SQL gibi sorgu dilini doğrudan C# gibi dilde kullanmanıza olanak tanır. Bu, sorguları yazarken dilin sözdizimini kullanarak daha okunabilir ve yazımı kolay kodlar oluşturmanıza yardımcı olur.
+
+- **Veri Kaynağına Bağımsızlık**: LINQ, çeşitli veri kaynakları (veritabanları, koleksiyonlar, XML belgeleri, vb.) üzerinde çalışabilir. Bu, farklı veri kaynaklarını aynı dil yapılarıyla sorgulamanıza olanak tanır.
+
+- **Tip Güvenliği**: LINQ, derleme zamanında tip güvenliği sağlar. Bu, hataların erken aşamada yakalanmasına ve daha güvenilir kod yazılmasına yardımcı olur .
+
+- **İç İçe Sorgular**: LINQ, iç içe geçmiş sorguları kolayca ifade etmenize olanak tanır, bu da daha karmaşık sorguları daha yönetilebilir hale getirir.
+
+- **Kodun Okunabilirliği**: LINQ sorguları, daha doğal ve anlaşılır bir şekilde yazılabilir, bu da kodun bakımını ve anlaşılmasını kolaylaştırır.
+
+Objectlerde LINQ Kullanımı ( LINQ to Objects ) 
+
+```csharp
+List<int> numbers = new List<int> { 1, 2, 3, 4, 5 };
+
+        // LINQ sorgusu
+        var evenNumbers = from n in numbers
+                          where n % 2 == 0
+                          select n;
+```
+
+SQL de LINQ kulllanımı ( LINQ to SQL ) 
+
+```csharp
+
+ using (var context = new MyDbContext())
+        {
+            // LINQ sorgusu 
+            var users = from u in context.Users
+                        where u.IsActive
+                        select u;
+
+            foreach (var user in users)
+            {
+                Console.WriteLine(user.Name);
+            }
+        }
+
+```
+
+
+# Asenkron Programlama  async ve await anahtar kelimeleri  Nedir? 
+- **async**: Bir metodu asenkron olarak tanımlar. async anahtar kelimesi, bir metodun asenkron bir işlevi yerine getirebileceğini belirtir ve bu metodun içinde await anahtar kelimesi kullanılabilir.
+
+-- **await**: Asenkron bir işlemi bekler ve bu işlemi tamamlanana kadar diğer işlemlerin devam etmesini sağlar. await, bir Task veya Task<T> döndüren bir metodun sonucunu bekler ve işlem tamamlandığında kontrolü geri alır.
+
+## Nasıl Çalışır?
+Asenkron programlama, bir işlem yapılırken uygulamanın diğer işlemleri de gerçekleştirmesine olanak tanır. Özellikle, uzun süren I/O işlemleri (veritabanı sorguları, dosya okuma/yazma, ağ istekleri vb.) sırasında, bu işlemler tamamlanmadan uygulamanın yanıt vermeye devam etmesini sağlar.
+
+Örnek kod : 
+
+```csharp
+ public async Task<IActionResult> Add([FromBody] CreateOperationClaimCommand createOperationClaimCommand)
+ {
+     var result = await Mediator.Send(createOperationClaimCommand);
+     return Created("Başarılı şekilde oluşturuldu ", result);
+ }
+```
+
+## Generics Nedir?
+
+Generics, ASP.NET ve genel olarak .NET framework'te, tür güvenliğini ve kodun yeniden kullanılabilirliğini artırmak için kullanılan bir özelliktir. Generics, belirli bir türü ifade eden kodların yazılmasını sağlar, bu türler çalışma zamanında belirlenir ve derleme zamanında doğruluk kontrolü yapılır.
+Generics, kodu tür bağımsız hale getiren ve aynı kodun farklı türlerle çalışmasını sağlayan bir özelliktir. Bu, özellikle koleksiyonlar, veri yapıları ve sınıflar için faydalıdır.
+
+```csharp
+ public interface IAsyncRepository<TEntity> : IQuery<TEntity> where TEntity : BaseEntity
+
+ public interface IEntityTypeConfiguration<TEntity> where TEntity : class , new() // devam ederek özelliklerini belirtebiliriz 
+```
+
+## Library ve Framework kavramları nedir  ?
+
+- Library, Önceden yazılmış hazır metotların olduğu alandır. İhtiyaca göre projemize dahil eder ve kullanırız.
+- Framework, Önceden hazırlanmış belirli standartlar halinde kütüphanelerin bulunduğu bir iskelettir. İhtiyaca göre projemizi o iskelete dahil edip inşa ederiz.
+
+## Entity Framework (EF) nedir ? 
+Entity Framework (EF), Microsoft tarafından geliştirilen ve en yaygın kullanılan C# ORM araçlarından biridir. EF, nesne yönelimli programlamayı ilişkisel veritabanlarına bağlayan bir ORM aracıdır.
+
+- Entity Framework Core: EF'nin çapraz platform ve modern uygulamalara yönelik yeniden yazılmış versiyonudur.
+
+- Code First, Database First ve Model First yaklaşımlarını destekler.
+
+- LINQ (Language Integrated Query) desteği: Veritabanı sorgularını C# ile yazmanıza olanak tanır.
+
+- Veritabanı geçişleri (migrations) desteği: Veritabanı şemasını kod değişikliklerine göre otomatik olarak güncelleyebilirsiniz.
+
+## 1. Code First
+Code First, veritabanı yapısını doğrudan koddan oluşturmayı ve yönetmeyi sağlayan bir yaklaşımdır.
+
+Özellikler:
+- Model Tanımlama: Veritabanı şeması, C# sınıfları (modeller) aracılığıyla tanımlanır.
+- Veritabanı Oluşturma: Entity Framework, bu model sınıflarından veritabanı şemasını oluşturur ve yönetir.
+- Migrations: Veritabanı şemasını değiştirmenize ve bu değişiklikleri uygulamanıza olanak tanır.
+
+## 2.Database First
+Database First, mevcut bir veritabanını kullanarak model oluşturmayı sağlayan bir yaklaşımdır.
+
+Özellikler:
+- Veritabanı ile Başlama: Veritabanı şeması zaten mevcut ve bu şemadan sınıflar oluşturulur.
+- Model Oluşturma: Entity Framework, veritabanındaki tabloları ve ilişkileri kullanarak model sınıflarını oluşturur.
+- Otomatik Güncelleme: Veritabanındaki değişiklikler, modelin otomatik olarak güncellenmesini sağlar.
+
+## 3.Model First ( Via Diagram )  
+Model First, veritabanı şemasını bir model (diagram) ile tanımlayıp, bu modelden veritabanı oluşturmayı sağlar.
+Database First, mevcut bir veritabanını kullanarak model oluşturmayı sağlayan bir yaklaşımdır.
+
+Özellikler:
+- Modelleme: Veritabanı yapısı bir görsel modelleme aracıyla tanımlanır.
+- Kod Üretimi: Modelden otomatik olarak veritabanı ve kod sınıfları oluşturulur.
+- Görsel Araçlar: Entity Framework Designer gibi araçlar kullanılarak görsel şemalar oluşturulur.
+
+## Class ile struct arasında ki farklar nedir ?
+Özet 
+- Class: Referans tipi, heap üzerinde saklanır, kalıtım desteği vardır, null değeri alabilir.
+- Struct: Değer tipi, stack üzerinde saklanır, kalıtım desteği yoktur, null değeri almaz, küçük veri yapıları için daha hızlıdır. Bu farklar, hangi senaryoda class veya struct kullanmanız gerektiği konusunda karar vermenize yardımcı olabilir. Örneğin, basit ve sık kullanılan veri yapıları için struct, daha karmaşık ve büyük veri yapıları için ise class tercih edilir.
+
+# Değer Tipler ve Referans Tipler Arasındaki Farklar
+
+## Bellekte Saklanma
+
+### Değer Tipleri
+
+Değer tipleri bellekte `stack` adı verilen bölgede saklanır ve bir değişkenin değerini doğrudan taşır. Bir değişkene atama yapıldığında, aslında değerin bir kopyası oluşturulur.
+
+**Örnek:**
+
+```csharp
+int a = 10;
+int b = a; // b'nin değeri 10, a'nın değeri değişmez
+b = 20;    // a'nın değeri hala 10
+```
+
+### Referans tipleri 
+
+Referans tipleri bellekte heap adı verilen bölgede saklanır ve bir referans tipi değişken, bellekteki bir nesnenin adresini (referansını) taşır. Bir değişkene atama yapıldığında, nesnenin adresi kopyalanır, ancak asıl veri üzerinde değişiklik yapılabilir.
+```csharp
+class Person
+{
+    public string Name { get; set; }
+}
+
+Person person1 = new Person();
+person1.Name = "Alice";
+Person person2 = person1; // person2, person1 ile aynı nesneye referans eder
+person2.Name = "Bob";     // person1.Name da "Bob" olur çünkü her iki değişken de aynı nesneye referans eder
+
+```
+Değer Tipleri:
+-  Değer tipleri bellekte **stack** adı verilen bölgede saklanır
+-  Değer tiplerinin varsayılan değeri genellikle sıfırdır. Örneğin, bir int tipi için varsayılan değer 0'dır.
+-  örnekler :  int, float, bool, char, struct, enum gibi türler değer tipidir.
+  
+Referans Tipleri:
+-  Referans tipleri bellekte **heap** adı verilen bölgede saklanır
+-  Referans tiplerinin varsayılan değeri null'dır, yani başlangıçta hiçbir nesneye referans etmezler.
+-  örnekler : class, interface
