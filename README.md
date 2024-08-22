@@ -287,4 +287,25 @@ AutoMapper, bir nesneyi diğerine kolayca ve otomatik olarak eşlemek (map) içi
 - **DTO**, bu verileri dış dünyaya veya diğer katmanlara taşımak için kullanılır.
 - **AutoMapper** ise Entity ile DTO arasında veri eşlemesini kolaylaştırır
 
+## Business Rules nedir Neden önemlidir ?
+
+Business Rules (İş Kuralları), bir iş sürecinin nasıl işleyeceğini ve iş mantığının nasıl uygulanacağını belirleyen kurallardır. İş kuralları, organizasyonların ve iş süreçlerinin nasıl yönetileceğini, hangi koşullar altında ne tür işlemler yapılacağını ve hangi kriterlerin sağlanması gerektiğini tanımlar.
+
+- **Kuralların Tanımlanması**: İş kuralları, organizasyonun hedeflerine ulaşmasını desteklemek için iş süreçlerini nasıl yöneteceğini belirler. Örneğin, bir kredi başvurusunun onaylanabilmesi için belirli kriterlerin sağlanması gerektiğini tanımlayabilir.
+
+- **Koşullar ve Eylemler**: İş kuralları genellikle belirli koşulları ve bu koşullar sağlandığında yapılması gereken eylemleri tanımlar. Örneğin, bir müşteri hesabının kapatılabilmesi için borcunun sıfırlanmış olması gerektiğini belirtebilir.
+
+- **Karmaşıklık ve Mantık**: İş kuralları, organizasyonun iş süreçlerindeki karmaşıklığı yönetir. Kurallar genellikle iş mantığını kapsar ve çeşitli durumları ele alacak şekilde tasarlanır.
+
+örnek kodda burada bir kullanıcı aynı role iki kere sahip olmasını engelleyen bir iş kuralıdır , x Kişisini 2 kere aynı rolden tabloya  kayıt attırmayacaktır 
+```csharp
+  public async Task UserOperationClaimCanNotBeDuplicatedWhenInsertedForUser(int operationClaimId, int userId)
+  {
+      IPaginate<UserOperationClaim> result = await _useroperationclaimRepository.GetListAsync(b => b.OperationClaimId == operationClaimId && b.UserId == userId);
+      if (result.Items.Any())
+      {
+          throw new BusinessException(ExceptionMessages.UserOperationClaimNameExists);
+      }
+  }
+```
 
