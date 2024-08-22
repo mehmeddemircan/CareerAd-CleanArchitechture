@@ -1,41 +1,52 @@
-Attributes ( öznitelikler ) 
-C#’daki attributes, köşeli parantezler [] ile tanımlanır ve genellikle özelliklerin (properties) veya metodların başına yerleştirilir.
-Authentication kimlik doğrulama işlemidir
-SecuredOperation attribute ise burada çoklu role karşı ayarlanmış bir attributedur
-Bu Attributeler, Kod okunabilirginide ve hangi apilerimiz authentication ve authorization kontrolu yapmasını sağlar
-İstek attırmaz önce attribute de ki kodlar çalışır attribute de ki şartlar sağlandıktan sonra kontroller çalışır
+Proje Adı
+Öznitelikler (Attributes)
+C#’daki öznitelikler (attributes), köşeli parantezler [] ile tanımlanır ve genellikle özelliklerin (properties) veya metodların başına yerleştirilir. Öznitelikler, kodun okunabilirliğini artırır ve hangi API'lerin kimlik doğrulama (authentication) ve yetkilendirme (authorization) kontrolü yaptığını belirler. Bir isteğin işlenmesinden önce, özniteliklerin kodları çalışır; bu şartlar sağlandığında kontroller devreye girer.
 
-Serialize (Serileştirme) ve Deserialize (Deserileştirme), yazılım geliştirmede verilerin bir formattan diğerine dönüştürülmesi işlemleridir. Genellikle veri taşımak, depolamak veya iletmek için kullanılırlar.
- 
-Serialize : C# nesnesini JSON formatına dönüştürmek
+Authentication
+Authentication, kimlik doğrulama işlemidir.
+
+SecuredOperation Attribute
+SecuredOperation attribute’u, burada çoklu role karşı ayarlanmış bir özniteliktir. Bu öznitelik, belirli rollerin erişimini kontrol etmek için kullanılır.
+
+Serileştirme (Serialization) ve Deserileştirme (Deserialization)
+Serileştirme (Serialize) ve deserileştirme (Deserialize), yazılım geliştirmede verilerin bir formattan diğerine dönüştürülmesi işlemleridir. Genellikle veri taşımak, depolamak veya iletmek için kullanılırlar.
+
+Serialize
+C# nesnesini JSON formatına dönüştürme işlemidir.
+
+csharp
+Copy code
 User user = new User { Name = "Ali", Age = 30 };
- string json = JsonSerializer.Serialize(user);
+string json = JsonSerializer.Serialize(user);
+Deserialize
+Serileştirilmiş verinin (örneğin, JSON veya XML) orijinal nesne formatına geri dönüştürülmesi işlemidir.
 
-
-Deserialize : serileştirilmiş verinin (örneğin, JSON veya XML) orijinal nesne formatına geri dönüştürülmesi işlemidir.
-
+csharp
+Copy code
 string json = "{\"Name\":\"Ali\",\"Age\":30}";
-User user = JsonSerializer.Deserialize<User>(json)
+User user = JsonSerializer.Deserialize<User>(json);
+DbContext ve Using Bloğu
+DbContext ile birlikte using ifadesi, veritabanı bağlantılarının doğru bir şekilde yönetilmesini sağlamak için kullanılır. using bloğu, kaynağın otomatik olarak serbest bırakılmasını sağlar; yani işlem tamamlandığında bağlantı kapanır ve kaynaklar serbest bırakılır.
 
-DbContext de entityframework base repository de using blogu içinde kullanım amacı nedir ?
-
-DbContext ile birlikte using ifadesi, veritabanı bağlantılarının doğru bir şekilde yönetilmesini sağlamak için kullanılır. using bloğu, kaynağın otomatik olarak serbest bırakılmasını sağlar, yani işiniz bittiğinde bağlantı kapanır ve kaynaklar serbest bırakılır.
-
+csharp
+Copy code
 using (var context = new BaseDbContext())
 {
-    // Veritabanı işlemleri yapılacak
+    // Veritabanı işlemleri burada yapılır.
 }
+Bu kullanımın avantajları şunlardır:
 
-1.	Bellek sızıntılarını önlersiniz.
-2. Veritabanı bağlantılarını etkin bir şekilde yönetirsiniz.
- 3.	Uygulamanızın performansını artırırsınız.
+Bellek sızıntılarını önler.
+Veritabanı bağlantılarını etkin bir şekilde yönetir.
+Uygulamanın performansını artırır.
+Dolayısıyla, DbContext nesnesini using bloğu içinde kullanmak, kaynakların doğru ve güvenli bir şekilde yönetilmesini sağlar.
 
-Bu yüzden, DbContext nesnesini using bloğu içinde kullanmak, kaynakların doğru ve güvenli bir şekilde yönetilmesini sağlar.
+Entity Type Configuration
+DeleteBehavior.Cascade
+Ana tablodan bir kayıt silindiğinde, ilişkili alt tablo kayıtları otomatik olarak silinir.
 
-Entity Type Configuration Bilgileri 
-
-DeleteBehavior.Cascade: Ana tablodan bir kayıt silindiğinde, ilişkili alt tablo kayıtları otomatik olarak silinir.
-DeleteBehavior.Restrict: Ana tablodan bir kayıt silinmek istendiğinde, ilişkili alt tablo kayıtları varsa silme işlemi engellenir.
+DeleteBehavior.Restrict
+Ana tablodan bir kayıt silinmek istendiğinde, ilişkili alt tablo kayıtları varsa silme işlemi engellenir.
 
 Bu ayarlar, veritabanı bütünlüğünü korumak ve veri silme işlemlerinin etkisini kontrol etmek için önemlidir.
 
