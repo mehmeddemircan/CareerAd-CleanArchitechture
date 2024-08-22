@@ -15,27 +15,32 @@ Serileştirme (Serialize) ve deserileştirme (Deserialize), yazılım geliştirm
 C# nesnesini JSON formatına dönüştürme işlemidir.
 
 
+```bash
 User user = new User { Name = "Ali", Age = 30 };
 string json = JsonSerializer.Serialize(user);
+```
 Deserialize
 Serileştirilmiş verinin (örneğin, JSON veya XML) orijinal nesne formatına geri dönüştürülmesi işlemidir.
 
-
+```bash
 string json = "{\"Name\":\"Ali\",\"Age\":30}";
 User user = JsonSerializer.Deserialize<User>(json);
+
+
 DbContext ve Using Bloğu
 DbContext ile birlikte using ifadesi, veritabanı bağlantılarının doğru bir şekilde yönetilmesini sağlamak için kullanılır. using bloğu, kaynağın otomatik olarak serbest bırakılmasını sağlar; yani işlem tamamlandığında bağlantı kapanır ve kaynaklar serbest bırakılır.
 
-
+```bash
 using (var context = new BaseDbContext())
 {
     // Veritabanı işlemleri burada yapılır.
 }
+```
 Bu kullanımın avantajları şunlardır:
 
-1. Bellek sızıntılarını önler.
-2. Veritabanı bağlantılarını etkin bir şekilde yönetir.
-3. Uygulamanın performansını artırır.
+- 1. Bellek sızıntılarını önler.
+- 2. Veritabanı bağlantılarını etkin bir şekilde yönetir.
+- 3. Uygulamanın performansını artırır.
 Dolayısıyla, DbContext nesnesini using bloğu içinde kullanmak, kaynakların doğru ve güvenli bir şekilde yönetilmesini sağlar.
 
 # Entity Type Configuration
