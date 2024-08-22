@@ -14,7 +14,7 @@ namespace Core.Constants
         public const string TagIdMustBeGreaterThanZero = "TagId must be greater than 0.";
         public const string BlogIdMustBeGreaterThanZero = "BlogId must be greater than 0.";
         public const string CommentIdMustBeGreaterThanZero = "CommentId must be greater than 0.";
-        public const string CategoryIdMustBeGreaterThanZero = "CategoryId must be greater than 0.";
+        public const string IndustryTypeIdMustBeGreaterThanZero = "IndustryTypeId must be greater than 0.";
 
         public const string TitleIsRequired = "TitleIsRequired";
         public const string ContentIsRequired = "Content is required";
@@ -29,16 +29,13 @@ namespace Core.Constants
 
         #endregion
 
-        #region Category
-        public const string CategoryNameCanNotBeEmpty = "Category Name Can not be empty";
-        public const string CategoryNameMinLength = "Category Name minimum length 2 character ";
+        #region IndustryType
+        public const string IndustryTypeNameCanNotBeEmpty = "IndustryType Name Can not be empty";
+        public const string IndustryTypeNameMinLength = "IndustryType Name minimum length 2 character ";
         #endregion
 
 
-        #region Tag
-        public const string TagNameCanNotBeEmpty = "Tag Name Can not be empty";
-        public const string TagNameMinLength = "Tag Name minimum length 2 character ";
-        #endregion
+      
 
         #region OperationClaim
         public const string OperationClaimNameCanNotBeEmpty = "OperationClaim Name Can not be empty";

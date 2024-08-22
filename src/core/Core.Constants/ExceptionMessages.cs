@@ -23,5 +23,10 @@ namespace Core.Constants
         public const string OperationClaimNameExists = "OperationClaim Name Already exists";
         public const string OperationClaimShouldExistWhenRequested = "Requested OperationClaim does not exist";
         #endregion
+
+        #region IndustryType
+        public const string IndustryTypeNameExists = "IndustryType Name Already exists";
+        public const string IndustryTypeShouldExistWhenRequested = "Requested IndustryType does not exist";
+        #endregion
     }
 }

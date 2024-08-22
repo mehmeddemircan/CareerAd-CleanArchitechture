@@ -5,6 +5,7 @@ using Core.JWT;
 using FluentValidation;
 using MediatR;
 using Microsoft.Extensions.DependencyInjection;
+using QuickReserve.Application.Features.IndustryTypes.Rules;
 using QuickReserve.Application.Features.OperationClaims.Rules;
 using QuickReserve.Application.Features.UserOperationClaims.Rules;
 using QuickReserve.Application.Features.Users.Rules;
@@ -31,6 +32,7 @@ namespace QuickReserve.Application
             services.AddScoped<UserOperationClaimBusinessRules>();
             services.AddScoped<OperationClaimBusinessRules>();
             services.AddScoped<UserBusinessRules>();
+            services.AddScoped<IndustryTypeBusinessRules>();
 
             services.AddValidatorsFromAssembly(Assembly.GetExecutingAssembly());
             services.AddTransient(typeof(IPipelineBehavior<,>), typeof(AuthorizationBehavior<,>));

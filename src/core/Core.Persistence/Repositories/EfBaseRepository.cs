@@ -75,36 +75,21 @@ namespace Core.Persistence.Repositories
 
         public async Task<TEntity> DeleteAsync(TEntity entity, bool permanent = false)
         {
-            if (permanent)
-            {
-                Context.Set<TEntity>().RemoveRange(entity);
-            }
-            else
-            {
-                entity.IsDeleted = true;
-                Context.Set<TEntity>().Update(entity);
-                var data = await Context.SaveChangesAsync();
-            }
+
+
+            Context.Set<TEntity>().Remove(entity);
+            var data = await Context.SaveChangesAsync();
+
+
             return entity;
         }
 
         public async Task<ICollection<TEntity>> DeleteRangeAsync(ICollection<TEntity> entities, bool permanent = false)
-
         {
 
-            if (permanent)
-            {
-                Context.Set<TEntity>().RemoveRange(entities);
-            }
-            else
-            {
-                foreach (var entity in entities)
-                {
-                    entity.IsDeleted = true;
-                    Context.Set<TEntity>().Update(entity);
-                }
-            }
+            Context.Set<TEntity>().RemoveRange(entities);
             await Context.SaveChangesAsync();
+
             return entities;
         }
 

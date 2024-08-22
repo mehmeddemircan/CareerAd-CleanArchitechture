@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
+using QuickReserve.Domain.Entities;
 using QuickReserve.Domain.Entities.Auth;
 using System;
 using System.Collections.Generic;
@@ -20,6 +21,7 @@ namespace QuickReserve.Persistence.Contexts
         public DbSet<User> Users { get; set; }
         public DbSet<OperationClaim> OperationClaims { get; set; }
         public DbSet<UserOperationClaim> UserOperationClaims { get; set; }
+        public DbSet<IndustryType> IndustryTypes { get; set; }
 
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
