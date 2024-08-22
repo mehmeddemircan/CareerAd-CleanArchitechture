@@ -358,3 +358,52 @@ eyJhbGciOiAiSFMyNTYiLCAidHlwIjogIkpXVCJ9.eyJzdWIiOiAiMTIzNDU2Nzg5MCIsICJuYW1lIjo
 - **Header**, **Payload** ve **Signature** bileşenlerinden oluşur.
 - **Kimlik doğrulama** ve **yetkilendirme** işlemleri için yaygın olarak kullanılır.
 - **Token oluşturma**, **iletişim** ve **doğrulama** süreçleri ile güvenli veri aktarımı sağlar.
+
+
+# ASP.NET Core'da Extensions nedir ? Nasıl Çalışır ? 
+
+**ASP.NET Core'da extensions** (genişletmeler), uygulamanın çeşitli bileşenlerine ek işlevsellik eklemek için kullanılan önemli yapı taşlarıdır. Bu genişletmeler, uygulamanın yapılandırmasını, servislerini ve diğer özelliklerini kolayca özelleştirmenizi sağlar. İki ana türde kullanılırlar: **extension methods** ve **extension services**.
+
+## 1. Extension Methods (Genişletme Metotları)
+
+**Extension methods** (genişletme metotları), mevcut sınıflara yeni yöntemler eklemenize olanak tanır. Bu yöntemler, sınıfların orijinal kodunu değiştirmeden eklenir ve kullanılır. Genişletme metotları, genellikle `static` bir sınıf içinde tanımlanır ve `this` anahtar kelimesiyle belirtilen sınıfa eklenir.
+
+### Örnek
+
+```csharp
+public static class StringExtensions
+{
+    public static bool IsNullOrEmpty(this string str)
+    {
+        return string.IsNullOrEmpty(str);
+    }
+}
+
+// Kullanımı:
+string myString = null;
+bool isEmpty = myString.IsNullOrEmpty(); // true
+```
+
+## 2. Extension Services (Genişletme Servisleri)
+**Extension services**  (genişletme servisleri), ASP.NET Core uygulamalarında servisleri yapılandırmak için kullanılır. Genellikle Startup sınıfında yer alan ConfigureServices metodunda tanımlanır ve uygulamanın servis koleksiyonuna eklenir. Bu, ASP.NET Core'un bağımlılık enjeksiyon (DI) sistemine yeni servisler eklemenizi sağlar.
+
+### Ornek 
+```csharp
+public static class ServiceCollectionExtensions
+{
+    public static IServiceCollection AddCustomServices(this IServiceCollection services)
+    {
+        services.AddTransient<IMyService, MyService>();
+        services.AddScoped<IOtherService, OtherService>();
+        return services;
+    }
+}
+
+
+```
+İşlevlik kazanması için Program.cs ye eklenmesi de gerekiyordur
+```csharp
+//Yukarida extension servisimizin entegresi 
+builder.Services.AddCustomServices();
+```
+
