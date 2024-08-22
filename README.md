@@ -50,6 +50,21 @@ Ana tablodan bir kayıt silindiğinde, ilişkili alt tablo kayıtları otomatik 
 # DeleteBehavior.Restrict
 Ana tablodan bir kayıt silinmek istendiğinde, ilişkili alt tablo kayıtları varsa silme işlemi engellenir.
 
+```csharp
+ builder.HasOne(uoc => uoc.User)
+        .WithMany()
+        .HasForeignKey(uoc => uoc.UserId)
+        .OnDelete(DeleteBehavior.Restrict);
+
+ builder.HasOne(uoc => uoc.OperationClaim)
+        .WithMany()
+        .HasForeignKey(uoc => uoc.OperationClaimId)
+        .OnDelete(DeleteBehavior.Restrict);
+
+    // yada 
+         .OnDelete(DeleteBehavior.Cascade); 
+```
+
 Bu ayarlar, veritabanı bütünlüğünü korumak ve veri silme işlemlerinin etkisini kontrol etmek için önemlidir.
 
 # Global Exception Handling nedir ?
