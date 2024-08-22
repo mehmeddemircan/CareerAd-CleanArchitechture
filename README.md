@@ -507,3 +507,40 @@ SQL de LINQ kulllanımı ( LINQ to SQL )
         }
 
 ```
+
+
+# Asenkron Programlama  async ve await anahtar kelimeleri  Nedir? 
+- **async**: Bir metodu asenkron olarak tanımlar. async anahtar kelimesi, bir metodun asenkron bir işlevi yerine getirebileceğini belirtir ve bu metodun içinde await anahtar kelimesi kullanılabilir.
+
+-- **await**: Asenkron bir işlemi bekler ve bu işlemi tamamlanana kadar diğer işlemlerin devam etmesini sağlar. await, bir Task veya Task<T> döndüren bir metodun sonucunu bekler ve işlem tamamlandığında kontrolü geri alır.
+
+## Nasıl Çalışır?
+Asenkron programlama, bir işlem yapılırken uygulamanın diğer işlemleri de gerçekleştirmesine olanak tanır. Özellikle, uzun süren I/O işlemleri (veritabanı sorguları, dosya okuma/yazma, ağ istekleri vb.) sırasında, bu işlemler tamamlanmadan uygulamanın yanıt vermeye devam etmesini sağlar.
+
+Örnek kod : 
+
+```csharp
+ public async Task<IActionResult> Add([FromBody] CreateOperationClaimCommand createOperationClaimCommand)
+ {
+     var result = await Mediator.Send(createOperationClaimCommand);
+     return Created("Başarılı şekilde oluşturuldu ", result);
+ }
+```
+
+## Generics Nedir?
+
+Generics, ASP.NET ve genel olarak .NET framework'te, tür güvenliğini ve kodun yeniden kullanılabilirliğini artırmak için kullanılan bir özelliktir. Generics, belirli bir türü ifade eden kodların yazılmasını sağlar, bu türler çalışma zamanında belirlenir ve derleme zamanında doğruluk kontrolü yapılır.
+Generics, kodu tür bağımsız hale getiren ve aynı kodun farklı türlerle çalışmasını sağlayan bir özelliktir. Bu, özellikle koleksiyonlar, veri yapıları ve sınıflar için faydalıdır.
+
+```csharp
+ public interface IAsyncRepository<TEntity> : IQuery<TEntity> where TEntity : BaseEntity
+
+ public interface IEntityTypeConfiguration<TEntity> where TEntity : class , new() // devam ederek özelliklerini belirtebiliriz 
+```
+
+## Library ve Framework kavramlarını kısaca açıklayınız. 
+
+- Library, Önceden yazılmış hazır metotların olduğu alandır. İhtiyaca göre projemize dahil eder ve kullanırız.
+- Framework, Önceden hazırlanmış belirli standartlar halinde kütüphanelerin bulunduğu bir iskelettir. İhtiyaca göre projemizi o iskelete dahil edip inşa ederiz.
+
+  
