@@ -281,4 +281,9 @@ AutoMapper, bir nesneyi diğerine kolayca ve otomatik olarak eşlemek (map) içi
 - Kod tekrarını önler.
 - Veri transferi süreçlerini hızlandırır.
 
+## DTO, Entity ve AutoMapper Arasındaki İlişki
+**Entity**, veritabanı tablolarını temsil eder ve veri yönetimi için kullanılır.
+**DTO**, bu verileri dış dünyaya veya diğer katmanlara taşımak için kullanılır.
+**AutoMapper** ise Entity ile DTO arasında veri eşlemesini kolaylaştırır
+
 
