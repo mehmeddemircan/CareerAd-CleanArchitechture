@@ -578,3 +578,49 @@ Database First, mevcut bir veritabanını kullanarak model oluşturmayı sağlay
 - Modelleme: Veritabanı yapısı bir görsel modelleme aracıyla tanımlanır.
 - Kod Üretimi: Modelden otomatik olarak veritabanı ve kod sınıfları oluşturulur.
 - Görsel Araçlar: Entity Framework Designer gibi araçlar kullanılarak görsel şemalar oluşturulur.
+
+## Class ile struct arasında ki farklar nedir ?
+Özet 
+- Class: Referans tipi, heap üzerinde saklanır, kalıtım desteği vardır, null değeri alabilir.
+- Struct: Değer tipi, stack üzerinde saklanır, kalıtım desteği yoktur, null değeri almaz, küçük veri yapıları için daha hızlıdır. Bu farklar, hangi senaryoda class veya struct kullanmanız gerektiği konusunda karar vermenize yardımcı olabilir. Örneğin, basit ve sık kullanılan veri yapıları için struct, daha karmaşık ve büyük veri yapıları için ise class tercih edilir.
+
+# Değer Tipler ve Referans Tipler Arasındaki Farklar
+
+## Bellekte Saklanma
+
+### Değer Tipleri
+
+Değer tipleri bellekte `stack` adı verilen bölgede saklanır ve bir değişkenin değerini doğrudan taşır. Bir değişkene atama yapıldığında, aslında değerin bir kopyası oluşturulur.
+
+**Örnek:**
+
+```csharp
+int a = 10;
+int b = a; // b'nin değeri 10, a'nın değeri değişmez
+b = 20;    // a'nın değeri hala 10
+```
+
+### Referans tipleri 
+
+Referans tipleri bellekte heap adı verilen bölgede saklanır ve bir referans tipi değişken, bellekteki bir nesnenin adresini (referansını) taşır. Bir değişkene atama yapıldığında, nesnenin adresi kopyalanır, ancak asıl veri üzerinde değişiklik yapılabilir.
+```csharp
+class Person
+{
+    public string Name { get; set; }
+}
+
+Person person1 = new Person();
+person1.Name = "Alice";
+Person person2 = person1; // person2, person1 ile aynı nesneye referans eder
+person2.Name = "Bob";     // person1.Name da "Bob" olur çünkü her iki değişken de aynı nesneye referans eder
+
+```
+Değer Tipleri:
+-  Değer tipleri bellekte **stack** adı verilen bölgede saklanır
+-  Değer tiplerinin varsayılan değeri genellikle sıfırdır. Örneğin, bir int tipi için varsayılan değer 0'dır.
+-  örnekler :  int, float, bool, char, struct, enum gibi türler değer tipidir.
+  
+Referans Tipleri:
+-  Referans tipleri bellekte **heap** adı verilen bölgede saklanır
+-  Referans tiplerinin varsayılan değeri null'dır, yani başlangıçta hiçbir nesneye referans etmezler.
+-  örnekler : class, interface
