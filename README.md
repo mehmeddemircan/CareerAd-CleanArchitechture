@@ -425,3 +425,42 @@ Test aşamasında, yazılımın hatalarını bulmak ve işlevselliğini doğrula
 Dağıtım aşamasında, yazılım canlı ortamda kullanıma sunulur.
 ## 6. Bakım
 Bakım aşamasında, yazılımın güncellenmesi, hataların düzeltilmesi ve performansının iyileştirilmesi sağlanır.
+
+
+## IIncludableQueryable Nedir ?
+IIncludableQueryable, Entity Framework Core'da kullanılır ve ilişkili verileri sorgulamak için kullanılır. Özellikle, bir varlıkla ilişkili diğer varlıkları içermesi gereken sorgularda kullanılır.
+
+- Özellikler:
+İlişkili verilerle birlikte ana varlıkları sorgulamak için Include() ve ThenInclude() metodlarını destekler.
+
+örnek kod 
+```csharp
+using Microsoft.EntityFrameworkCore;
+using System.Linq;
+
+var usersWithOrders = context.Users
+    .Include(u => u.Orders) // Kullanıcıyla ilişkili siparişleri de getir
+    .ToList();
+
+```
+
+## SoftDelete Nedir ? 
+
+Soft delete (yumuşak silme), veritabanında bir kaydın fiziksel olarak silinmemesi, ancak kullanım dışı veya görünmez hale getirilmesi yöntemidir. Bu yöntem, verilerin geri getirilebilmesi veya arşivlenmesi gerektiğinde kullanılır.
+
+### SoftDelete Nasıl Çalışır?
+Soft delete, genellikle bir kaydın belirli bir durumunu (örneğin, silinmiş olduğunu) göstermek için ek bir alan kullanarak gerçekleştirilir. Bu alan genellikle bir boolean değer (IsDeleted) veya bir tarih (DeletedAt) olabilir. Silme işlemi yapıldığında, bu alan güncellenir ve kaydın silinmiş olduğu işaretlenir, ancak kayıt veritabanında fiziksel olarak kalır.
+
+Avantajlar
+- Geri Getirme: Yanlışlıkla silinen veriler geri getirilebilir.
+- Veri Tarihçesi: Silinen verilerin tarihçesi korunabilir.
+- Denetim: Silme işlemi denetlenebilir ve kaydedilebilir.
+
+Dezavantajlar
+- Performans: Silinmiş kayıtların da veritabanında kalması, sorgu performansını etkileyebilir.
+- Veri Büyüklüğü: Veritabanı boyutu, silinmiş kayıtlarla büyüyebilir.
+- Uygulama Karmaşıklığı: Yazılım mantığının karmaşıklığını artırabilir çünkü sorgular ve işlemler, silinmiş kayıtları göz önünde bulunduracak şekilde tasarlanmalıdır.
+
+Soft delete, genellikle veri kaybını önlemek ve veri yönetimini daha esnek hale getirmek için kullanılır.
+
+
