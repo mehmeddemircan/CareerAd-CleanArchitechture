@@ -407,3 +407,21 @@ public static class ServiceCollectionExtensions
 builder.Services.AddCustomServices();
 ```
 
+# Yazılım Geliştirme Döngüsü
+
+Yazılım geliştirme döngüsü (SDLC - Software Development Life Cycle), yazılım projelerini planlamak, geliştirmek ve bakımını yapmak için kullanılan bir süreçtir.
+
+- Adımları
+  
+## 1. Gereksinim Analizi
+Gereksinim analizi aşamasında, proje için gerekli olan tüm gereksinimler toplanır ve analiz edilir.
+## 2. Tasarım
+Tasarım aşamasında, yazılımın nasıl çalışacağına dair teknik ve sistem tasarımları yapılır.
+## 3. Geliştirme
+Geliştirme aşamasında, tasarım doğrultusunda yazılım kodlanır.
+## 4. Test
+Test aşamasında, yazılımın hatalarını bulmak ve işlevselliğini doğrulamak için testler yapılır
+## 5. Dağıtım
+Dağıtım aşamasında, yazılım canlı ortamda kullanıma sunulur.
+## 6. Bakım
+Bakım aşamasında, yazılımın güncellenmesi, hataların düzeltilmesi ve performansının iyileştirilmesi sağlanır.
