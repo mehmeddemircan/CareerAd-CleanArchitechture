@@ -140,4 +140,64 @@ Bu prensip, veri akışını daha iyi yönetmek ve performansı artırmak için 
 - **Esneklik**: Uygulamanın bir tarafında değişiklik yaparken diğer tarafı etkilemez.
 - **Test Edilebilirlik**: Komut ve sorgu işleyicileri ayrı birimler olduğu için kolayca test edilebilir.
 
+## Dependency Injection Nedir ? 
 
+
+Dependency Injection (DI), bir yazılım tasarım deseni olup, sınıflar arasındaki bağımlılıkların gevşek bir şekilde ilişkilendirilmesini sağlar. Bu desen, bir sınıfın ihtiyaç duyduğu bağımlılıkları (genellikle diğer sınıfların örnekleri) doğrudan yaratmak yerine, bu bağımlılıkların dışarıdan sağlanması prensibine dayanır. DI, nesnelerin yönetimini kolaylaştırır, test edilebilirliği artırır ve kodun esnekliğini sağlar.
+
+## Neden Dependency Injection?
+
+- **Gevşek Bağlılık:** Sınıflar arasında sıkı bağlılıkların azaltılmasına yardımcı olur, böylece bir sınıfta yapılan değişiklikler diğer sınıfları minimum düzeyde etkiler.
+- **Test Edilebilirlik:** Bağımlılıklar dışarıdan sağlandığı için, birim testlerde kolayca sahte (mock) nesneler kullanılabilir.
+- **Bakım ve Geliştirme:** Bağımlılıkların merkezi bir yerden yönetilmesi, kodun daha kolay anlaşılmasını ve genişletilmesini sağlar.
+
+## Dependency Injection Türleri , ( 3 tür bulunmaktadır ) 
+
+### 1. Constructor Injection 
+
+Bağımlılıklar, constructor'a parametre olarak geçirilir. Bu, **en yaygın** kullanılan DI türüdür.
+
+**Örnek:**
+
+```csharp
+public class MyClass
+{
+    private readonly IMyDependency _myDependency;
+
+    public MyClass(IMyDependency myDependency)
+    {
+        _myDependency = myDependency;
+    }
+
+    public void DoWork()
+    {
+        _myDependency.Execute();
+    }
+}
+```
+### 2. Property Injection
+Bağımlılıklar, sınıfın özellikleri (properties) üzerinden enjekte edilir.
+
+```csharp
+public class MyClass
+{
+    public IMyDependency MyDependency { get; set; }
+
+    public void DoWork()
+    {
+        MyDependency.Execute();
+    }
+}
+```
+
+### 3. Method Injection
+Bağımlılıklar, metodun parametreleri aracılığıyla sağlanır.
+```csharp
+public class MyClass
+{
+    public void DoWork(IMyDependency myDependency)
+    {
+        myDependency.Execute();
+    }
+}
+```
