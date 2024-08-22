@@ -208,3 +208,27 @@ public class MyClass
 - **AddTransient**: Her talepte yeni bir örnek oluşturur. Hafif nesneler için veya her kullanımda yeni bir örneğe ihtiyaç duyulduğunda kullanılır.
 
 Bu farklı dependency injection  servis türleri, ASP.NET Core uygulamanızın performansını ve kaynak yönetimini optimize etmek için önemlidir.
+
+## FluentAPI nedir ( Entity Type Configuration )
+
+Fluent API, genellikle Entity Framework Core'da kullanılan bir yapılandırma yöntemidir. Fluent API, C# dilindeki lambda ifadeleri ve metod zincirleme (method chaining) tekniğini kullanarak, veri modellemelerinin ve ilişkilerinin daha esnek ve okunabilir bir şekilde tanımlanmasını sağlar. Bu yapılandırmalar, genellikle OnModelCreating metodu içinde yapılır.
+
+Veri modellemelerini ve ilişkilerini çok daha detaylı ve esnek bir şekilde tanımlayabilirsiniz. Fluent API, genellikle veri anotasyonları (data annotations) ile yapılamayan daha karmaşık yapılandırmaları sağlar.
+
+örnek kod
+
+```csharp
+protected override void OnModelCreating(ModelBuilder modelBuilder)
+    {
+        // Primary key tanımlama
+        modelBuilder.Entity<Product>()
+            .HasKey(p => p.ProductId);
+
+        // Property için maksimum uzunluk belirleme
+        modelBuilder.Entity<Product>()
+            .Property(p => p.Name)
+            .HasMaxLength(100)
+            .IsRequired();
+    }
+```
+
