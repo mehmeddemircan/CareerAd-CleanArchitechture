@@ -23,14 +23,16 @@ namespace Application.BusinessAspects
         {
             var user = context.HttpContext.User;
 
-           
-
             var userRoles = user.Claims
                 .Where(c => c.Type == ClaimTypes.Role)
                 .Select(c => c.Value)
                 .ToList();
 
-            var requiredRoles = _roles.Split(',');
+            // Roller arasında virgül ile ayrılmış değerleri al ve boşlukları temizle
+            var requiredRoles = _roles
+                .Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries)
+                .Select(role => role.Trim()) // Boşlukları temizle
+                .ToArray();
 
             if (!requiredRoles.Any(role => userRoles.Contains(role)))
             {

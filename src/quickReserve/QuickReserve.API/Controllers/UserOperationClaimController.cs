@@ -28,6 +28,7 @@ namespace QuickReserve.API.Controllers
         [HttpGet]
         [Authentication]
         [SecuredOperation("Admin")]
+       // [SecuredOperation("Admin,User")]
         public async Task<IActionResult> GetList([FromQuery] PageRequest pageRequest)
         {
             GetListUserOperationClaimQuery getListUserOperationClaimQuery = new() { PageRequest = pageRequest };
