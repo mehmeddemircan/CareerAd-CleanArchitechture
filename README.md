@@ -243,3 +243,42 @@ protected override void OnModelCreating(ModelBuilder modelBuilder)
 
 Veri anotasyonları (data annotations), doğrudan model sınıflarının üzerine eklenirken, Fluent API yapılandırmaları DbContext sınıfı içinde merkezi olarak tanımlanır. Fluent API, özellikle karmaşık ve gelişmiş yapılandırmalar için tercih edilir.
 
+## DTO (Data Transfer Object) Nedir?
+DTO, bir uygulama katmanından diğerine veri taşımak için kullanılan basit veri nesneleridir. DTO'lar, sadece veri taşımak amacıyla tasarlandıkları için genellikle iş mantığı veya davranış içermezler. Amaçları, veri transferi sırasında gereksiz verilerin taşınmasını engellemek ve veri güvenliğini artırmaktır.
+
+### Özellikleri:
+- Sadece veri içerir; iş mantığı (business logic )  içermez.
+- Veri taşıma sırasında gereksiz bilgilerden arındırılmıştır.
+- Genellikle veri doğrulama, güvenlik ve performans gibi sebeplerle kullanılır.
+
+```csharp
+public class ProductDto
+{
+    public int Id { get; set; }
+    public string Name { get; set; }
+    public decimal Price { get; set; }
+    
+    // Kategori adını içeren property
+    public string CategoryName { get; set; } //önemli olan kısım burasıdır 
+}
+```
+
+## Entity Nedir?
+Entity, genellikle veritabanında bir tabloyu temsil eden, alanları (properties) olan sınıflardır. Entity sınıfları, iş mantığı (business logic) ve veritabanı arasındaki ilişkiyi sağlar. Entity, veritabanındaki tablo yapısını yansıtır ve bu sınıflar, Entity Framework gibi ORM araçları tarafından kullanılır.
+
+### Özellikleri:
+
+- Veritabanındaki tabloyu temsil eder.
+- Veri tutarlılığı ve ilişkileri yönetir.
+- CRUD (Create, Read, Update, Delete) işlemleri için kullanılır.
+
+## Automapper nedir ? 
+AutoMapper, bir nesneyi diğerine kolayca ve otomatik olarak eşlemek (map) için kullanılan bir kütüphanedir. Genellikle Entity sınıflarını DTO'lara veya tam tersi şekilde dönüştürmek için kullanılır. AutoMapper, kod tekrarını azaltır ve veri eşleştirme işlemlerini basitleştirir.
+
+### Özellikleri : 
+
+- Bir nesnenin özelliklerini diğerine otomatik olarak eşler.
+- Kod tekrarını önler.
+- Veri transferi süreçlerini hızlandırır.
+
+
