@@ -1,4 +1,5 @@
-﻿using Core.Application.Authorization;
+﻿
+using Core.Application.Authorization;
 using Core.Application.Validation;
 using Core.JWT;
 using FluentValidation;
@@ -6,6 +7,7 @@ using MediatR;
 using Microsoft.Extensions.DependencyInjection;
 using QuickReserve.Application.Features.OperationClaims.Rules;
 using QuickReserve.Application.Features.UserOperationClaims.Rules;
+using QuickReserve.Application.Features.Users.Rules;
 using QuickReserve.Application.Services.AuthService;
 using QuickReserve.Application.Services.UserService;
 using System;
@@ -28,6 +30,7 @@ namespace QuickReserve.Application
 
             services.AddScoped<UserOperationClaimBusinessRules>();
             services.AddScoped<OperationClaimBusinessRules>();
+            services.AddScoped<UserBusinessRules>();
 
             services.AddValidatorsFromAssembly(Assembly.GetExecutingAssembly());
             services.AddTransient(typeof(IPipelineBehavior<,>), typeof(AuthorizationBehavior<,>));

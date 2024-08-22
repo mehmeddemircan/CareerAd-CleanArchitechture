@@ -52,26 +52,10 @@ namespace Core.Persistence.Repositories
             return Context.Set<TEntity>();
         }
 
-        public async Task<TEntity> AddAsync(TEntity entity)
-        {
-            Context.Entry(entity).State = EntityState.Added;
-            await Context.SaveChangesAsync();
-            return entity;
-        }
 
-        public async Task<TEntity> UpdateAsync(TEntity entity)
-        {
-            Context.Entry(entity).State = EntityState.Modified;
-            await Context.SaveChangesAsync();
-            return entity;
-        }
+   
 
-        public async Task<TEntity> DeleteAsync(TEntity entity)
-        {
-            Context.Entry(entity).State = EntityState.Deleted;
-            var data = await Context.SaveChangesAsync();
-            return entity;
-        }
+      
         public async Task<TEntity?> GetDetailsAsync(Expression<Func<TEntity, bool>> predicate, params Expression<Func<TEntity, object>>[] includes)
         {
 
@@ -88,6 +72,22 @@ namespace Core.Persistence.Repositories
             return await query.FirstOrDefaultAsync(predicate);
 
         }
+
+        public async Task<TEntity> DeleteAsync(TEntity entity, bool permanent = false)
+        {
+            if (permanent)
+            {
+                Context.Set<TEntity>().RemoveRange(entity);
+            }
+            else
+            {
+                entity.IsDeleted = true;
+                Context.Set<TEntity>().Update(entity);
+                var data = await Context.SaveChangesAsync();
+            }
+            return entity;
+        }
+
         public async Task<ICollection<TEntity>> DeleteRangeAsync(ICollection<TEntity> entities, bool permanent = false)
 
         {
@@ -108,9 +108,50 @@ namespace Core.Persistence.Repositories
             return entities;
         }
 
+        public async Task<TEntity> AddAsync(TEntity entity)
+        {
+            entity.CreatedTime = DateTime.UtcNow;
+            await Context.AddAsync(entity);
+            await Context.SaveChangesAsync();
+            return entity;
+        }
 
-    
+        public async Task<ICollection<TEntity>> AddRangeAsync(ICollection<TEntity> entities)
+        {
+            foreach (TEntity entity in entities)
+            {
+                entity.CreatedTime = DateTime.UtcNow;
+            }
 
-    
+            await Context.AddRangeAsync(entities);
+            await Context.SaveChangesAsync();
+            return entities;
+        }
+
+        public async Task<TEntity> UpdateAsync(TEntity entity)
+        {
+            entity.UpdatedTime = DateTime.UtcNow;
+            Context.Update(entity);
+            await Context.SaveChangesAsync();
+            return entity;
+        }
+
+        public async Task<ICollection<TEntity>> UpdateRangeAsync(ICollection<TEntity> entities)
+        {
+            foreach (TEntity entity in entities)
+            {
+                entity.UpdatedTime = DateTime.UtcNow;
+            }
+
+            Context.UpdateRange(entities);
+            await Context.SaveChangesAsync();
+            return entities;
+        }
+
+       
+        
+
+
+
     }
 }

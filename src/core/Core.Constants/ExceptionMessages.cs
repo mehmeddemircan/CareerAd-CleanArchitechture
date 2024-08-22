@@ -9,7 +9,9 @@ namespace Core.Constants
     public static class ExceptionMessages
     {
 
-       
+        #region User
+        public const string UserShouldExistWhenRequested = "Requested user does not exist";
+        #endregion
 
         #region UserOperationClaim
         public const string UserOperationClaimNameExists = "UserOperationClaim Name Already exists";

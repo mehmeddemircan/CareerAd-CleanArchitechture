@@ -10,15 +10,15 @@ using System.Threading.Tasks;
 
 namespace Core.Persistence.Repositories
 {
-    public interface IAsyncRepository<T> : IQuery<T> where T : BaseEntity
+    public interface IAsyncRepository<TEntity> : IQuery<TEntity> where TEntity : BaseEntity
     {
-        Task<T?> GetAsync(Expression<Func<T, bool>> predicate);
+        Task<TEntity?> GetAsync(Expression<Func<TEntity, bool>> predicate);
 
-        Task<T?> GetDetailsAsync(Expression<Func<T, bool>> predicate, params Expression<Func<T, object>>[] includes);
+        Task<TEntity?> GetDetailsAsync(Expression<Func<TEntity, bool>> predicate, params Expression<Func<TEntity, object>>[] includes);
 
-        Task<IPaginate<T>> GetListAsync(Expression<Func<T, bool>>? predicate = null,
-                                        Func<IQueryable<T>, IOrderedQueryable<T>>? orderBy = null,
-                                        Func<IQueryable<T>, IIncludableQueryable<T, object>>? include = null,
+        Task<IPaginate<TEntity>> GetListAsync(Expression<Func<TEntity, bool>>? predicate = null,
+                                        Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>>? orderBy = null,
+                                        Func<IQueryable<TEntity>, IIncludableQueryable<TEntity, object>>? include = null,
                                         int index = 0, int size = 10, bool enableTracking = true,
                                         CancellationToken cancellationToken = default);
 
@@ -27,12 +27,19 @@ namespace Core.Persistence.Repositories
 
 
 
-        Task<T> AddAsync(T entity);
+        Task<TEntity> AddAsync(TEntity entity);
 
-        Task<T> DeleteAsync(T entity);
-        Task<T> UpdateAsync(T entity);
+        Task<ICollection<TEntity>> AddRangeAsync(ICollection<TEntity> entity);
 
-        Task<ICollection<T>> DeleteRangeAsync(ICollection<T> entities, bool permanent = false);
+        Task<TEntity> UpdateAsync(TEntity entity);
+
+        Task<ICollection<TEntity>> UpdateRangeAsync(ICollection<TEntity> entity);
+
+        Task<TEntity> DeleteAsync(TEntity entity, bool permanent = false);
+
+        Task<ICollection<TEntity>> DeleteRangeAsync(ICollection<TEntity> entity, bool permanent = false);
+
+   
 
 
     }
