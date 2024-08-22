@@ -25,7 +25,7 @@ Serileştirilmiş verinin (örneğin, JSON veya XML) orijinal nesne formatına g
 ```bash
 string json = "{\"Name\":\"Ali\",\"Age\":30}";
 User user = JsonSerializer.Deserialize<User>(json);
-
+```
 
 DbContext ve Using Bloğu
 DbContext ile birlikte using ifadesi, veritabanı bağlantılarının doğru bir şekilde yönetilmesini sağlamak için kullanılır. using bloğu, kaynağın otomatik olarak serbest bırakılmasını sağlar; yani işlem tamamlandığında bağlantı kapanır ve kaynaklar serbest bırakılır.
