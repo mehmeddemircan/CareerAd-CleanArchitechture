@@ -538,7 +538,7 @@ Generics, kodu tür bağımsız hale getiren ve aynı kodun farklı türlerle ç
  public interface IEntityTypeConfiguration<TEntity> where TEntity : class , new() // devam ederek özelliklerini belirtebiliriz 
 ```
 
-## Library ve Framework kavramlarını kısaca açıklayınız. 
+## Library ve Framework kavramları nedir  ?
 
 - Library, Önceden yazılmış hazır metotların olduğu alandır. İhtiyaca göre projemize dahil eder ve kullanırız.
 - Framework, Önceden hazırlanmış belirli standartlar halinde kütüphanelerin bulunduğu bir iskelettir. İhtiyaca göre projemizi o iskelete dahil edip inşa ederiz.
