@@ -309,3 +309,37 @@ Business Rules (İş Kuralları), bir iş sürecinin nasıl işleyeceğini ve i�
   }
 ```
 
+## JWT'nin Çalışma Prensibi nasıldır ? 
+
+JWT ( Json web token )  web uygulamaları arasında güvenli veri iletimi için kullanılan bir açık standarttır. JWT, genellikle kimlik doğrulama ve yetkilendirme amacıyla kullanılır. JSON formatında kodlanmış bir tokendır 
+
+1. **Token Oluşturma:**
+   - Kullanıcı giriş yaptıktan sonra, kimlik doğrulama işlemi başarılı olursa sunucu, bir JWT oluşturur. Bu token, kullanıcı bilgilerini ve yetkilendirme bilgilerini içerir.
+   - Token, başlık, yük ve imzadan oluşur ve Base64Url ile kodlanır.
+
+2. **Token'ın İletilmesi:**
+   - JWT, genellikle HTTP başlıklarında (örneğin, `Authorization: Bearer <token>`) veya çerezlerde (`cookies`) gönderilir.
+
+3. **Token'ın Doğrulanması:**
+   - Sunucu, token'ı aldığında önce imzayı doğrular. Eğer imza geçerliyse, token'ın içeriği (payload) okunur ve geçerlilik süresi kontrol edilir.
+   - Token geçerli ve süresi dolmamışsa, kullanıcının kimliği doğrulanmış ve gerekli yetkilendirme yapılmış olur.
+
+4. **Kullanıcı Erişimi:**
+   - Kullanıcı JWT'yi kullanarak çeşitli API'lere erişebilir. Sunucu, her istekte JWT'yi doğrular ve kullanıcının yetkilerini kontrol eder.
+
+## Örnek JWT
+
+Bir JWT'nin yapısı genellikle şu şekildedir:
+```csharp
+eyJhbGciOiAiSFMyNTYiLCAidHlwIjogIkpXVCJ9.eyJzdWIiOiAiMTIzNDU2Nzg5MCIsICJuYW1lIjogIkpvaG4gRG9lIiwgImFkbWluIjogdHJ1ZX0.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c
+```
+- **İlk Kısım (Header):** `eyJhbGciOiAiSFMyNTYiLCAidHlwIjogIkpXVCJ9`
+- **İkinci Kısım (Payload):** `eyJzdWIiOiAiMTIzNDU2Nzg5MCIsICJuYW1lIjogIkpvaG4gRG9lIiwgImFkbWluIjogdHJ1ZX0`
+- **Üçüncü Kısım (Signature):** `SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c`
+
+## Özet
+
+- **JWT**, JSON formatında kodlanmış, güvenli veri iletimi sağlayan bir token'dır.
+- **Header**, **Payload** ve **Signature** bileşenlerinden oluşur.
+- **Kimlik doğrulama** ve **yetkilendirme** işlemleri için yaygın olarak kullanılır.
+- **Token oluşturma**, **iletişim** ve **doğrulama** süreçleri ile güvenli veri aktarımı sağlar.
