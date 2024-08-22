@@ -134,6 +134,10 @@ Bu prensip, veri akışını daha iyi yönetmek ve performansı artırmak için 
 ## CQRS ve .NET Core
 
 .NET Core'da CQRS mimarisi genellikle MediatR gibi bir kütüphane kullanılarak uygulanır. MediatR, uygulama içindeki istekleri ve bu isteklere karşılık gelen işleyicileri birbirinden ayırarak CQRS prensiplerini kolayca uygulamanıza olanak tanır.
-
+## CQRS'in Avantajları
+- **Böl ve Yönet: Uygulamanın karmaşıklığını azaltır, okuma ve yazma işlemlerini farklı sorumluluklara ayırır.
+- **Performans: Okuma ve yazma işlemleri farklı şekilde optimize edilebilir.
+- **Esneklik: Uygulamanın bir tarafında değişiklik yaparken diğer tarafı etkilemez.
+- **Test Edilebilirlik: Komut ve sorgu işleyicileri ayrı birimler olduğu için kolayca test edilebilir.
 
 
