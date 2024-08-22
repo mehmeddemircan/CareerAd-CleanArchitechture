@@ -77,7 +77,34 @@ Middleware, gelen bir HTTP isteği sunucuya ulaştığında veya bir yanıt iste
 - Logging (Kayıt Tutma): İsteklerin ve yanıtların loglanması.
 - Hata Yönetimi (Error Handling): Meydana gelen hataların yakalanması ve uygun şekilde yönetilmesi.
 - Önbellekleme (Caching): Yanıtların önbelleğe alınması veya önbellekten sunulması.
-  
+
+örnek Kod 
+```bash
+public void Configure(IApplicationBuilder app)
+{
+    app.Use(async (context, next) =>
+    {
+        try
+        {
+            await next.Invoke(); // Sonraki middleware’e geçiş
+        }
+        catch (Exception ex)
+        {
+            // Hataları yakala ve yönet
+            await context.Response.WriteAsync("An error occurred.");
+        }
+    });
+
+    app.UseMiddleware<AuthenticationMiddleware>();
+    app.UseMiddleware<LoggingMiddleware>();
+
+    app.Run(async (context) =>
+    {
+        await context.Response.WriteAsync("Hello World!");
+    });
+}
+```
+
 # Middleware Nasıl Çalışır?
 Middleware, genellikle bir zincir (pipeline) şeklinde çalışır. Bir HTTP isteği geldiğinde, bu zincirdeki her middleware sırasıyla çalışır. Her middleware, isteği değiştirebilir, işleyebilir veya başka bir middleware’e iletebilir. Sonunda, isteğe bir yanıt döndürüldüğünde, yine bu zincir üzerinden geriye doğru geçer.
 
