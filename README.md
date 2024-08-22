@@ -38,9 +38,9 @@ using (var context = new BaseDbContext())
 ```
 Bu kullanımın avantajları şunlardır:
 
-- 1. Bellek sızıntılarını önler.
-- 2. Veritabanı bağlantılarını etkin bir şekilde yönetir.
-- 3. Uygulamanın performansını artırır.
+-  Bellek sızıntılarını önler.
+-  Veritabanı bağlantılarını etkin bir şekilde yönetir.
+-  Uygulamanın performansını artırır.
 Dolayısıyla, DbContext nesnesini using bloğu içinde kullanmak, kaynakların doğru ve güvenli bir şekilde yönetilmesini sağlar.
 
 # Entity Type Configuration
