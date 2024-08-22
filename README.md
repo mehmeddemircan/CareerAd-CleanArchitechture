@@ -543,4 +543,38 @@ Generics, kodu tür bağımsız hale getiren ve aynı kodun farklı türlerle ç
 - Library, Önceden yazılmış hazır metotların olduğu alandır. İhtiyaca göre projemize dahil eder ve kullanırız.
 - Framework, Önceden hazırlanmış belirli standartlar halinde kütüphanelerin bulunduğu bir iskelettir. İhtiyaca göre projemizi o iskelete dahil edip inşa ederiz.
 
-  
+## Entity Framework (EF) nedir ? 
+Entity Framework (EF), Microsoft tarafından geliştirilen ve en yaygın kullanılan C# ORM araçlarından biridir. EF, nesne yönelimli programlamayı ilişkisel veritabanlarına bağlayan bir ORM aracıdır.
+
+- Entity Framework Core: EF'nin çapraz platform ve modern uygulamalara yönelik yeniden yazılmış versiyonudur.
+
+- Code First, Database First ve Model First yaklaşımlarını destekler.
+
+- LINQ (Language Integrated Query) desteği: Veritabanı sorgularını C# ile yazmanıza olanak tanır.
+
+- Veritabanı geçişleri (migrations) desteği: Veritabanı şemasını kod değişikliklerine göre otomatik olarak güncelleyebilirsiniz.
+
+## 1. Code First
+Code First, veritabanı yapısını doğrudan koddan oluşturmayı ve yönetmeyi sağlayan bir yaklaşımdır.
+
+Özellikler:
+- Model Tanımlama: Veritabanı şeması, C# sınıfları (modeller) aracılığıyla tanımlanır.
+- Veritabanı Oluşturma: Entity Framework, bu model sınıflarından veritabanı şemasını oluşturur ve yönetir.
+- Migrations: Veritabanı şemasını değiştirmenize ve bu değişiklikleri uygulamanıza olanak tanır.
+
+## 2.Database First
+Database First, mevcut bir veritabanını kullanarak model oluşturmayı sağlayan bir yaklaşımdır.
+
+Özellikler:
+- Veritabanı ile Başlama: Veritabanı şeması zaten mevcut ve bu şemadan sınıflar oluşturulur.
+- Model Oluşturma: Entity Framework, veritabanındaki tabloları ve ilişkileri kullanarak model sınıflarını oluşturur.
+- Otomatik Güncelleme: Veritabanındaki değişiklikler, modelin otomatik olarak güncellenmesini sağlar.
+
+## 3.Model First ( Via Diagram )  
+Model First, veritabanı şemasını bir model (diagram) ile tanımlayıp, bu modelden veritabanı oluşturmayı sağlar.
+Database First, mevcut bir veritabanını kullanarak model oluşturmayı sağlayan bir yaklaşımdır.
+
+Özellikler:
+- Modelleme: Veritabanı yapısı bir görsel modelleme aracıyla tanımlanır.
+- Kod Üretimi: Modelden otomatik olarak veritabanı ve kod sınıfları oluşturulur.
+- Görsel Araçlar: Entity Framework Designer gibi araçlar kullanılarak görsel şemalar oluşturulur.
