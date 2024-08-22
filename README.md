@@ -52,3 +52,19 @@ Ana tablodan bir kayıt silinmek istendiğinde, ilişkili alt tablo kayıtları 
 
 Bu ayarlar, veritabanı bütünlüğünü korumak ve veri silme işlemlerinin etkisini kontrol etmek için önemlidir.
 
+# Global Exception Handling nedir ?
+Global Exception Handling (Global Hata Yönetimi), bir uygulamada meydana gelen tüm hataları merkezi bir yerde yakalamak ve yönetmek için kullanılan bir tekniktir. Bu yöntem, özellikle büyük ve karmaşık projelerde, uygulamanın çeşitli bölümlerinde meydana gelebilecek hataları tutarlı bir şekilde ele almayı sağlar.
+
+#Global Exception Handling Neden Gereklidir?
+- Merkezi Yönetim: Hataların merkezi bir yerde yakalanması, farklı modüllerde farklı hata işleme mantıklarının kullanılmasını önler. Bu sayede uygulamanın hata yönetimi tutarlı hale gelir.
+
+- Bakım Kolaylığı: Tüm hataların tek bir yerden yönetilmesi, uygulamanın bakımını kolaylaştırır. Eğer bir hata yönetimi politikası güncellenmek istenirse, bu sadece global hata yöneticisinde yapılır ve tüm uygulamayı etkiler.
+
+- Kapsamlı Hata Raporlama: Hataların kaydedilmesi, loglanması ve raporlanması işlemleri merkezi olarak yönetilebilir. Bu sayede uygulamanın her yerinden gelen hatalar tek bir yerden izlenebilir.
+
+- Kullanıcı Deneyimi: Hatalar kullanıcıya düzgün bir şekilde bildirilebilir ve uygulamanın çökmesi veya beklenmeyen davranışlar sergilemesi önlenebilir. Kullanıcıya tutarlı hata mesajları sunulabilir.
+
+# Dikkat Edilmesi Gerekenler
+- Hataların Yakalanması ve Bildirilmesi: Hatalar yakalanmalı ve uygun bir loglama mekanizması ile kaydedilmelidir. Aynı zamanda, kullanıcıya anlamlı ve güvenli bir hata mesajı sunulmalıdır.
+
+Global Exception Handling, uygulamanın güvenilirliğini artırır, hata yönetimini kolaylaştırır ve kullanıcı deneyimini iyileştirir. Hataların merkezi bir yerde ele alınması, uygulamanın her yerinde tutarlı bir hata yönetimi sağlar.
