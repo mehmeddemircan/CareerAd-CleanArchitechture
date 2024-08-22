@@ -231,4 +231,15 @@ protected override void OnModelCreating(ModelBuilder modelBuilder)
             .IsRequired();
     }
 ```
+## Fluent API ile Yapılabilecek Bazı Yapılandırmalar
+
+- Primary Key, Foreign Key ve Index tanımlamaları
+- Tablo ve kolon isimlendirmeleri
+- İlişkiler (One-to-One, One-to-Many, Many-to-Many)
+- Veri kısıtlamaları (Unique, Required, MaxLength)
+- Veri türü ve varsayılan değer atamaları
+  
+## Fluent API ile Veri Anotasyonları Arasındaki Fark
+
+Veri anotasyonları (data annotations), doğrudan model sınıflarının üzerine eklenirken, Fluent API yapılandırmaları DbContext sınıfı içinde merkezi olarak tanımlanır. Fluent API, özellikle karmaşık ve gelişmiş yapılandırmalar için tercih edilir.
 
