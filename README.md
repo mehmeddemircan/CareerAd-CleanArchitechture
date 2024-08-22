@@ -116,3 +116,24 @@ Middleware, genellikle bir zincir (pipeline) şeklinde çalışır. Bir HTTP ist
 - Yanıt → Yanıt önbelleğe alınır.
 - Loglama → İstek ve yanıt kaydedilir.
 - Yanıt döndürülür.
+
+# CQRS ve MediatR nedir Nasıl Çalışır ?
+
+# CQRS (Command Query Responsibility Segregation)
+
+CQRS (Command Query Responsibility Segregation), yazılım mimarisinde kullanılan bir tasarım desenidir. CQRS, veri okuma (sorgu) ve veri yazma (komut) işlemlerinin ayrı sorumluluklara sahip olacak şekilde birbirinden ayrılması prensibine dayanır. Bu desen, sistemin performansını, ölçeklenebilirliğini ve bakımını artırmak amacıyla uygulanır.
+
+## CQRS Prensipleri
+
+- **Komut Command (Yazma İşlemleri):** Sistemde veri ekleme, güncelleme veya silme gibi işlemleri kapsar. Komut işlemleri, veri üzerinde değişiklik yapar ve genellikle bir yan etki (side effect) üretir.
+
+- **Sorgu Query  (Okuma İşlemleri):** Veri üzerinde sadece okuma işlemi gerçekleştirir. Sorgu işlemleri herhangi bir yan etki üretmez ve sadece veri döndürür.
+
+Bu prensip, veri akışını daha iyi yönetmek ve performansı artırmak için okuma ve yazma işlemlerini ayrı sorumluluklara ayırır. Böylece, veri okuma ve yazma işlemleri için farklı modeller ve veritabanları kullanılabilir.
+
+## CQRS ve .NET Core
+
+.NET Core'da CQRS mimarisi genellikle MediatR gibi bir kütüphane kullanılarak uygulanır. MediatR, uygulama içindeki istekleri ve bu isteklere karşılık gelen işleyicileri birbirinden ayırarak CQRS prensiplerini kolayca uygulamanıza olanak tanır.
+
+
+
