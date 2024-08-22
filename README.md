@@ -411,7 +411,7 @@ builder.Services.AddCustomServices();
 
 Yazılım geliştirme döngüsü (SDLC - Software Development Life Cycle), yazılım projelerini planlamak, geliştirmek ve bakımını yapmak için kullanılan bir süreçtir.
 
-- Adımları
+Adımları aşağıda ki gibidir 
   
 ## 1. Gereksinim Analizi
 Gereksinim analizi aşamasında, proje için gerekli olan tüm gereksinimler toplanır ve analiz edilir.
