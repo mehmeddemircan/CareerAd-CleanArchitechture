@@ -478,6 +478,8 @@ LINQ (Language Integrated Query), .NET dillerinde (C#, VB.NET, F# gibi) veri kay
 
 - **Kodun Okunabilirliği**: LINQ sorguları, daha doğal ve anlaşılır bir şekilde yazılabilir, bu da kodun bakımını ve anlaşılmasını kolaylaştırır.
 
+Objectlerde LINQ Kullanımı ( LINQ to Objects ) 
+
 ```csharp
 List<int> numbers = new List<int> { 1, 2, 3, 4, 5 };
 
@@ -487,3 +489,21 @@ List<int> numbers = new List<int> { 1, 2, 3, 4, 5 };
                           select n;
 ```
 
+SQL de LINQ kulllanımı ( LINQ to SQL ) 
+
+```csharp
+
+ using (var context = new MyDbContext())
+        {
+            // LINQ sorgusu 
+            var users = from u in context.Users
+                        where u.IsActive
+                        select u;
+
+            foreach (var user in users)
+            {
+                Console.WriteLine(user.Name);
+            }
+        }
+
+```
