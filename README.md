@@ -68,3 +68,24 @@ Global Exception Handling (Global Hata Yönetimi), bir uygulamada meydana gelen 
 - Hataların Yakalanması ve Bildirilmesi: Hatalar yakalanmalı ve uygun bir loglama mekanizması ile kaydedilmelidir. Aynı zamanda, kullanıcıya anlamlı ve güvenli bir hata mesajı sunulmalıdır.
 
 Global Exception Handling, uygulamanın güvenilirliğini artırır, hata yönetimini kolaylaştırır ve kullanıcı deneyimini iyileştirir. Hataların merkezi bir yerde ele alınması, uygulamanın her yerinde tutarlı bir hata yönetimi sağlar.
+
+# Middleware Ne Yapar?
+Middleware, gelen bir HTTP isteği sunucuya ulaştığında veya bir yanıt istemciye gönderilmeden önce, bu süreci keserek belirli işlemleri gerçekleştirebilir. Bu işlemler şunlar olabilir:
+
+- Kimlik Doğrulama (Authentication): İstek sahibinin kimliğinin doğrulanması.
+- Yetkilendirme (Authorization): İstek sahibinin belirli kaynaklara erişim yetkisinin kontrol edilmesi.
+- Logging (Kayıt Tutma): İsteklerin ve yanıtların loglanması.
+- Hata Yönetimi (Error Handling): Meydana gelen hataların yakalanması ve uygun şekilde yönetilmesi.
+- Önbellekleme (Caching): Yanıtların önbelleğe alınması veya önbellekten sunulması.
+  
+# Middleware Nasıl Çalışır?
+Middleware, genellikle bir zincir (pipeline) şeklinde çalışır. Bir HTTP isteği geldiğinde, bu zincirdeki her middleware sırasıyla çalışır. Her middleware, isteği değiştirebilir, işleyebilir veya başka bir middleware’e iletebilir. Sonunda, isteğe bir yanıt döndürüldüğünde, yine bu zincir üzerinden geriye doğru geçer.
+
+Örneğin, bir web uygulamasında şu şekilde çalışabilir:
+
+- Gelen istek → Kimlik doğrulama middleware’i isteği kontrol eder.
+- Yetkilendirme → Kullanıcının yetkisi olup olmadığını kontrol eder.
+- İşleme → İstek işlenir ve yanıt oluşturulur.
+- Yanıt → Yanıt önbelleğe alınır.
+- Loglama → İstek ve yanıt kaydedilir.
+- Yanıt döndürülür.
