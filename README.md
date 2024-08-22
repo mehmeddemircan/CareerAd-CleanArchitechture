@@ -463,4 +463,27 @@ Dezavantajlar
 
 Soft delete, genellikle veri kaybını önlemek ve veri yönetimini daha esnek hale getirmek için kullanılır.
 
+## LINQ Nedir ve neden kullanılır ? 
+
+LINQ (Language Integrated Query), .NET dillerinde (C#, VB.NET, F# gibi) veri kaynaklarını sorgulamak için kullanılan bir özellik setidir. LINQ, veri sorgularını doğrudan dil içinde yazmanıza olanak tanır ve veri sorgulama kodunu daha okunabilir ve yazılması kolay hale getirir.
+
+
+- **Sorgulama Kolaylığı**: LINQ, SQL gibi sorgu dilini doğrudan C# gibi dilde kullanmanıza olanak tanır. Bu, sorguları yazarken dilin sözdizimini kullanarak daha okunabilir ve yazımı kolay kodlar oluşturmanıza yardımcı olur.
+
+- **Veri Kaynağına Bağımsızlık**: LINQ, çeşitli veri kaynakları (veritabanları, koleksiyonlar, XML belgeleri, vb.) üzerinde çalışabilir. Bu, farklı veri kaynaklarını aynı dil yapılarıyla sorgulamanıza olanak tanır.
+
+- **Tip Güvenliği**: LINQ, derleme zamanında tip güvenliği sağlar. Bu, hataların erken aşamada yakalanmasına ve daha güvenilir kod yazılmasına yardımcı olur .
+
+- **İç İçe Sorgular**: LINQ, iç içe geçmiş sorguları kolayca ifade etmenize olanak tanır, bu da daha karmaşık sorguları daha yönetilebilir hale getirir.
+
+- **Kodun Okunabilirliği**: LINQ sorguları, daha doğal ve anlaşılır bir şekilde yazılabilir, bu da kodun bakımını ve anlaşılmasını kolaylaştırır.
+
+```csharp
+List<int> numbers = new List<int> { 1, 2, 3, 4, 5 };
+
+        // LINQ sorgusu
+        var evenNumbers = from n in numbers
+                          where n % 2 == 0
+                          select n;
+```
 
