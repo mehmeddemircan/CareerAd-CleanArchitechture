@@ -201,3 +201,10 @@ public class MyClass
     }
 }
 ```
+## Dependency Injection da kullanılan Servis Türleri 
+
+- **AddSingleton**: Uygulama ömrü boyunca **(genellikle uygulama başlatıldığında)** tek bir örnek oluşturur.
+- **AddScoped**: HTTP isteği boyunca tek bir örnek oluşturur. Her HTTP isteğinde MyService sınıfının yeni bir örneği oluşturulur ve bu örnek, o istek boyunca kullanılır.
+- **AddTransient**: Her talepte yeni bir örnek oluşturur. Hafif nesneler için veya her kullanımda yeni bir örneğe ihtiyaç duyulduğunda kullanılır.
+
+Bu farklı dependency injection  servis türleri, ASP.NET Core uygulamanızın performansını ve kaynak yönetimini optimize etmek için önemlidir.
