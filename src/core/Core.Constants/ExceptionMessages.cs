@@ -16,6 +16,10 @@ namespace Core.Constants
         public const string UserOperationClaimShouldExistWhenRequested = "Requested brand does not exist";
         #endregion
 
-      
+
+        #region OperationClaim
+        public const string OperationClaimNameExists = "OperationClaim Name Already exists";
+        public const string OperationClaimShouldExistWhenRequested = "Requested OperationClaim does not exist";
+        #endregion
     }
 }

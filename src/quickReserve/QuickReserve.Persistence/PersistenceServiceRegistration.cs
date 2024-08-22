@@ -24,6 +24,7 @@ namespace QuickReserve.Persistence
          
             services.AddScoped<IUserRepository, UserRepository>();
             services.AddScoped<IUserOperationClaimRepository, UserOperationClaimRepository>();
+            services.AddScoped<IOperationClaimRepository, OperationClaimRepository>();
         
 
             return services;
