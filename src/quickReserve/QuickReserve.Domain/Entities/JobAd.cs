@@ -12,6 +12,9 @@ namespace QuickReserve.Domain.Entities
         public DateTime Deadline { get; set; }
         public int CompanyId { get; set; }
         public virtual  Company Company { get; set; }
+
+        public virtual JobAdForm JobAdForm { get; set; }
+        public virtual ICollection<JobAdApplication> JobAdApplications { get; set; }
     }
  
 }

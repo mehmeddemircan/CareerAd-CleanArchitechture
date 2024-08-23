@@ -28,6 +28,10 @@ namespace QuickReserve.Persistence
             services.AddScoped<IIndustryTypeRepository, IndustryTypeRepository>();
             services.AddScoped<IJobAdRepository, JobAdRepository>();
             services.AddScoped<ICompanyRepository, CompanyRepository>();
+            services.AddScoped<IQuestionRepository, QuestionRepository>();
+            services.AddScoped<IAnswerRepository, AnswerRepository>();
+            services.AddScoped<IJobAdFormRepository, JobAdFormRepository>();
+            services.AddScoped<IJobAdApplicationRepository, JobAdApplicationRepository>();
         
 
             return services;

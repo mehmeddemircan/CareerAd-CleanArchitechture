@@ -24,6 +24,10 @@ namespace QuickReserve.Persistence.Contexts
         public DbSet<IndustryType> IndustryTypes { get; set; }
         public DbSet<Company> Companies { get; set; }
         public DbSet<JobAd> JobAds { get; set; }
+        public DbSet<JobAdForm> JobAdForms { get; set; }
+        public DbSet<Question> Questions { get; set; }
+        public DbSet<Answer> Answers { get; set; }
+        public DbSet<JobAdApplication> JobAdApplications { get; set; }
 
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
