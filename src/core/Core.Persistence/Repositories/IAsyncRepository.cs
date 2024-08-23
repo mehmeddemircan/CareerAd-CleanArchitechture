@@ -39,7 +39,7 @@ namespace Core.Persistence.Repositories
 
         Task<ICollection<TEntity>> DeleteRangeAsync(ICollection<TEntity> entity, bool permanent = false);
 
-   
+     
 
 
     }

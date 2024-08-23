@@ -36,7 +36,7 @@ namespace QuickReserve.Application.Features.IndustryTypes.Commands.Update
 
             public async Task<IDataResult<UpdatedIndustryTypeDto>> Handle(UpdateIndustryTypeCommand request, CancellationToken cancellationToken)
             {
-                //await _industrytypeBusinessRules.IndustryTypeNameCanNotBeDuplicatedWhenInserted(request.Name);
+                await _industrytypeBusinessRules.IndustryTypeNameCanNotBeDuplicatedWhenInserted(request.Name);
 
 
                 IndustryType mappedEntity = _mapper.Map<IndustryType>(request);
