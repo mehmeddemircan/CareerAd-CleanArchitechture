@@ -7,6 +7,7 @@ using MediatR;
 using Microsoft.Extensions.DependencyInjection;
 using QuickReserve.Application.Features.Companies.Rules;
 using QuickReserve.Application.Features.IndustryTypes.Rules;
+using QuickReserve.Application.Features.JobAds.Rules;
 using QuickReserve.Application.Features.OperationClaims.Rules;
 using QuickReserve.Application.Features.UserOperationClaims.Rules;
 using QuickReserve.Application.Features.Users.Rules;
@@ -29,12 +30,13 @@ namespace QuickReserve.Application
             services.AddAutoMapper(Assembly.GetExecutingAssembly());
             services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(Assembly.GetExecutingAssembly()));
 
-
+            // business rules dependency injection entegresi 
             services.AddScoped<UserOperationClaimBusinessRules>();
             services.AddScoped<OperationClaimBusinessRules>();
             services.AddScoped<UserBusinessRules>();
             services.AddScoped<IndustryTypeBusinessRules>();
             services.AddScoped<CompanyBusinessRules>();
+            services.AddScoped<JobAdBusinessRules>();
 
             services.AddValidatorsFromAssembly(Assembly.GetExecutingAssembly());
             services.AddTransient(typeof(IPipelineBehavior<,>), typeof(AuthorizationBehavior<,>));
