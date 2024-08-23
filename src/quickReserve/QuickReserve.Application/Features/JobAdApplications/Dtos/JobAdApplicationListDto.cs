@@ -14,5 +14,8 @@ namespace QuickReserve.Application.Features.JobAdApplications.Dtos
         public string UserFirstName { get; set; }
         public string UserLastName { get; set; }
 
+        public string CvPdfPublicId { get; set; }
+        public string CvPdfUrl { get; set; }
+
     }
 }

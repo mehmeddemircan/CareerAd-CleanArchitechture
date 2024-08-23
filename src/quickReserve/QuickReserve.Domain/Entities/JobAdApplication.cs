@@ -16,5 +16,9 @@ namespace QuickReserve.Domain.Entities
 
         public int UserId { get; set; }
         public virtual User User { get; set; }
+
+        // CV (Öz gecmiş kısmı ) 
+        public string CvPdfPublicId { get; set; }
+        public string CvPdfUrl { get; set; }
     }
 }
