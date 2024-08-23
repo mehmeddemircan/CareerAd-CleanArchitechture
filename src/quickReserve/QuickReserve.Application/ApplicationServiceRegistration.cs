@@ -7,6 +7,7 @@ using MediatR;
 using Microsoft.Extensions.DependencyInjection;
 using QuickReserve.Application.Features.Companies.Rules;
 using QuickReserve.Application.Features.IndustryTypes.Rules;
+using QuickReserve.Application.Features.JobAdForms.Rules;
 using QuickReserve.Application.Features.JobAds.Rules;
 using QuickReserve.Application.Features.OperationClaims.Rules;
 using QuickReserve.Application.Features.UserOperationClaims.Rules;
@@ -37,6 +38,7 @@ namespace QuickReserve.Application
             services.AddScoped<IndustryTypeBusinessRules>();
             services.AddScoped<CompanyBusinessRules>();
             services.AddScoped<JobAdBusinessRules>();
+            services.AddScoped<JobAdFormBusinessRules>();
 
             services.AddValidatorsFromAssembly(Assembly.GetExecutingAssembly());
             services.AddTransient(typeof(IPipelineBehavior<,>), typeof(AuthorizationBehavior<,>));
