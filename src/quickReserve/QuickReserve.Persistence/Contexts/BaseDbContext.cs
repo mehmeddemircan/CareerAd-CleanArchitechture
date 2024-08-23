@@ -22,6 +22,8 @@ namespace QuickReserve.Persistence.Contexts
         public DbSet<OperationClaim> OperationClaims { get; set; }
         public DbSet<UserOperationClaim> UserOperationClaims { get; set; }
         public DbSet<IndustryType> IndustryTypes { get; set; }
+        public DbSet<Company> Companies { get; set; }
+        public DbSet<JobAd> JobAds { get; set; }
 
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)

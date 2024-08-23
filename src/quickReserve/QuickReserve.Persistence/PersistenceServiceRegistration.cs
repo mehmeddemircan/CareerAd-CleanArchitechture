@@ -26,6 +26,8 @@ namespace QuickReserve.Persistence
             services.AddScoped<IUserOperationClaimRepository, UserOperationClaimRepository>();
             services.AddScoped<IOperationClaimRepository, OperationClaimRepository>();
             services.AddScoped<IIndustryTypeRepository, IndustryTypeRepository>();
+            services.AddScoped<IJobAdRepository, JobAdRepository>();
+            services.AddScoped<ICompanyRepository, CompanyRepository>();
         
 
             return services;

@@ -23,12 +23,7 @@ namespace QuickReserve.Persistence.EntityConfigurations
             builder.Property(oc => oc.Name).HasColumnName("Name").IsRequired().HasMaxLength(100);
 
 
-
-          
-
-
         }
 
     }
-
 }
