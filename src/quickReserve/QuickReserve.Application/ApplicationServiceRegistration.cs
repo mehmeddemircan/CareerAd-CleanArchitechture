@@ -5,6 +5,7 @@ using Core.JWT;
 using FluentValidation;
 using MediatR;
 using Microsoft.Extensions.DependencyInjection;
+using QuickReserve.Application.Features.Answers.Rules;
 using QuickReserve.Application.Features.Companies.Rules;
 using QuickReserve.Application.Features.IndustryTypes.Rules;
 using QuickReserve.Application.Features.JobAdForms.Rules;
@@ -41,6 +42,7 @@ namespace QuickReserve.Application
             services.AddScoped<JobAdBusinessRules>();
             services.AddScoped<JobAdFormBusinessRules>();
             services.AddScoped<QuestionBusinessRules>();
+            services.AddScoped<AnswerBusinessRules>();
 
             services.AddValidatorsFromAssembly(Assembly.GetExecutingAssembly());
             services.AddTransient(typeof(IPipelineBehavior<,>), typeof(AuthorizationBehavior<,>));
