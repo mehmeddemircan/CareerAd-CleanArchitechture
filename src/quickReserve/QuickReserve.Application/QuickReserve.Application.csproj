@@ -25,9 +25,12 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Features\Answers\Commands\" />
+    <Folder Include="Features\Answers\NewFolder\" />
     <Folder Include="Features\Companies\Validations\" />
     <Folder Include="Features\JobAdForms\Validations\" />
     <Folder Include="Features\JobAds\Validations\" />
+    <Folder Include="Features\Questions\Validations\" />
   </ItemGroup>
 
 </Project>

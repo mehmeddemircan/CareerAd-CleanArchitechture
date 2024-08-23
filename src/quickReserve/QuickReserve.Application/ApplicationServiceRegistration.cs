@@ -10,6 +10,7 @@ using QuickReserve.Application.Features.IndustryTypes.Rules;
 using QuickReserve.Application.Features.JobAdForms.Rules;
 using QuickReserve.Application.Features.JobAds.Rules;
 using QuickReserve.Application.Features.OperationClaims.Rules;
+using QuickReserve.Application.Features.Questions.Rules;
 using QuickReserve.Application.Features.UserOperationClaims.Rules;
 using QuickReserve.Application.Features.Users.Rules;
 using QuickReserve.Application.Services.AuthService;
@@ -39,6 +40,7 @@ namespace QuickReserve.Application
             services.AddScoped<CompanyBusinessRules>();
             services.AddScoped<JobAdBusinessRules>();
             services.AddScoped<JobAdFormBusinessRules>();
+            services.AddScoped<QuestionBusinessRules>();
 
             services.AddValidatorsFromAssembly(Assembly.GetExecutingAssembly());
             services.AddTransient(typeof(IPipelineBehavior<,>), typeof(AuthorizationBehavior<,>));
