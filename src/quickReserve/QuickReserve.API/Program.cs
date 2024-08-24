@@ -4,6 +4,7 @@ using CloudinaryDotNet;
 using Core.CrossCuttingConcerns.Exceptions;
 using Core.JWT;
 using Core.JWT.Encryption;
+using Core.Mailing;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 
 using Microsoft.IdentityModel.Tokens;
@@ -59,20 +60,20 @@ builder.Services.AddSwaggerGen(opt =>
         }
     });
 });
-
-#region Cloudinary Upload Image
 var provider = builder.Services.BuildServiceProvider();
 var configuration = provider.GetRequiredService<IConfiguration>();
+#region Cloudinary Upload Image
+
 
 builder.Services.Configure<CloudinarySettings>(
     builder.Configuration.GetSection("CloudinarySettings"));
 
 builder.Services.AddScoped<ICloudinaryService, CloudinaryService>();
 
+#endregion
 
-
-
-
+#region Email Config
+builder.Services.AddScoped<IEmailService, EmailService>();
 #endregion
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
