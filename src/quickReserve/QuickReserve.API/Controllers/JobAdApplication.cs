@@ -22,7 +22,7 @@ namespace QuickReserve.API.Controllers
         [HttpPost]
         //[Authentication]
         //[SecuredOperation("Admin")]
-        public async Task<IActionResult> ApplyForJobAd([FromBody] CreateJobAdApplicationCommand createJobAdApplicationCommand)
+        public async Task<IActionResult> ApplyForJobAd([FromForm] CreateJobAdApplicationCommand createJobAdApplicationCommand)
         {
             var result = await Mediator.Send(createJobAdApplicationCommand);
             return Created("", result);
@@ -52,7 +52,7 @@ namespace QuickReserve.API.Controllers
         [HttpPut]
         //[Authentication]
         //[SecuredOperation("Admin")]
-        public async Task<IActionResult> UpdateApplication([FromBody] UpdateJobAdApplicationCommand updateJobAdApplicationCommand)
+        public async Task<IActionResult> UpdateApplication([FromForm] UpdateJobAdApplicationCommand updateJobAdApplicationCommand)
         {
             var responseUpdateJobAdApplicationDto = await Mediator.Send(updateJobAdApplicationCommand);
             return Ok(responseUpdateJobAdApplicationDto);

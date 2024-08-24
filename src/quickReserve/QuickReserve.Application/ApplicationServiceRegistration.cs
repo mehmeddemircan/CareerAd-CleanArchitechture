@@ -1,4 +1,5 @@
 ﻿
+using CloudinaryDotNet;
 using Core.Application.Authorization;
 using Core.Application.Validation;
 using Core.JWT;
@@ -16,6 +17,7 @@ using QuickReserve.Application.Features.Questions.Rules;
 using QuickReserve.Application.Features.UserOperationClaims.Rules;
 using QuickReserve.Application.Features.Users.Rules;
 using QuickReserve.Application.Services.AuthService;
+using QuickReserve.Application.Services.CloudinaryService;
 using QuickReserve.Application.Services.UserService;
 using System;
 using System.Collections.Generic;
@@ -55,6 +57,9 @@ namespace QuickReserve.Application
 
             services.AddScoped<IAuthService, AuthService>();
             services.AddScoped<IUserService, UserService>();
+
+        
+
        
 
 

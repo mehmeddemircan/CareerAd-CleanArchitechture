@@ -1,5 +1,6 @@
 
 
+using CloudinaryDotNet;
 using Core.CrossCuttingConcerns.Exceptions;
 using Core.JWT;
 using Core.JWT.Encryption;
@@ -8,6 +9,7 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using QuickReserve.Application;
+using QuickReserve.Application.Services.CloudinaryService;
 using QuickReserve.Persistence;
 using System.Text;
 
@@ -58,6 +60,20 @@ builder.Services.AddSwaggerGen(opt =>
     });
 });
 
+#region Cloudinary Upload Image
+var provider = builder.Services.BuildServiceProvider();
+var configuration = provider.GetRequiredService<IConfiguration>();
+
+builder.Services.Configure<CloudinarySettings>(
+    builder.Configuration.GetSection("CloudinarySettings"));
+
+builder.Services.AddScoped<ICloudinaryService, CloudinaryService>();
+
+
+
+
+
+#endregion
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
