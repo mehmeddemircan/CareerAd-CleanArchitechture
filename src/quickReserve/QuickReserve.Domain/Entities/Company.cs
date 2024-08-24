@@ -10,6 +10,8 @@ namespace QuickReserve.Domain.Entities
     public class Company : BaseEntity
     {
         public string Name { get; set; }
+        //Şirket resmi 
+        public string? LogoImage { get; set; }
         public string Website { get; set; }
         public string Description { get; set; }
         public int IndustryTypeId { get; set; }

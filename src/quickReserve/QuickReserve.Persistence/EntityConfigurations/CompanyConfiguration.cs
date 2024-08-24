@@ -16,6 +16,9 @@ namespace QuickReserve.Persistence.EntityConfigurations
                    .IsRequired()
                    .HasMaxLength(100);
 
+            builder.Property(c => c.LogoImage)
+                .IsRequired(false);
+            
             builder.Property(c => c.Website)
                    .HasMaxLength(200);
 
