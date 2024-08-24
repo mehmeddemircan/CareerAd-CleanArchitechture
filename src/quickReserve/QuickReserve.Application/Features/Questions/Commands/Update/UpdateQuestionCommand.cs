@@ -19,7 +19,8 @@ namespace QuickReserve.Application.Features.Questions.Commands.Update
     public partial class UpdateQuestionCommand : IRequest<IDataResult<UpdatedQuestionDto>>
     {
         public int Id { get; set; }
-        public string Text { get; set; }  
+        public string Text { get; set; }
+        public string QuestionType { get; set; }
         public int JobAdFormId { get; set; }
 
         public class UpdateQuestionCommandHandler : IRequestHandler<UpdateQuestionCommand, IDataResult<UpdatedQuestionDto>>

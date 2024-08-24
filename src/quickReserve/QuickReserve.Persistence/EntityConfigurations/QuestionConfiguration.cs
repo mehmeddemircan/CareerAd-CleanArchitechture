@@ -21,6 +21,12 @@ namespace QuickReserve.Persistence.EntityConfigurations
                    .IsRequired()
                    .HasMaxLength(500);
 
+
+            builder.Property(q => q.QuestionType)
+                   .IsRequired()
+                   .HasMaxLength(50);
+
+
             builder.HasOne(q => q.JobAdForm)
                    .WithMany(f => f.Questions)
                    .HasForeignKey(q => q.JobAdFormId)

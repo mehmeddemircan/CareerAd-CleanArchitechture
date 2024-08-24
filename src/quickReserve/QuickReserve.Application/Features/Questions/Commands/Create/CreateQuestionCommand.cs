@@ -18,7 +18,8 @@ namespace QuickReserve.Application.Features.Questions.Commands.Create
 {
     public partial class CreateQuestionCommand : IRequest<IDataResult<CreatedQuestionDto>>
     {
-        public string Text { get; set; }  
+        public string Text { get; set; }
+        public string QuestionType { get; set; }
         public int JobAdFormId { get; set; }
         public class CreateQuestionCommandHandler : IRequestHandler<CreateQuestionCommand, IDataResult<CreatedQuestionDto>>
         {
