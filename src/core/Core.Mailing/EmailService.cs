@@ -49,15 +49,59 @@ namespace Core.Mailing
             }
         }
 
-        public async Task SendSuccessJobAdEmailAsync(string toEmail, string toFullName, string jobTitle, string companyName)
+        public async Task SendSuccessJobAdEmailAsync(EmailTemplateRequest emailTemplateRequest)
         {
             var template = new SuccessJobAdTemplate();
-            string htmlBody = template.CreateJobAdEmailTemplate(jobTitle, companyName, toFullName);
+            string htmlBody = template.CreateJobAdEmailTemplate(emailTemplateRequest.JobTitle, emailTemplateRequest.CompanyName, emailTemplateRequest.ToFullName);
+
+            var email = new MimeMessage();
+            email.From.Add(new MailboxAddress(_mailSettings.SenderFullName, _mailSettings.SenderEmail));
+            email.To.Add(new MailboxAddress(emailTemplateRequest.ToFullName, emailTemplateRequest.ToEmail));
+            email.Subject = $"Congratulations on Your Success for the {emailTemplateRequest.JobTitle} Position!";
+
+            var bodyBuilder = new BodyBuilder { HtmlBody = htmlBody };
+            email.Body = bodyBuilder.ToMessageBody();
+
+            using (var smtp = new SmtpClient())
+            {
+                await smtp.ConnectAsync(_mailSettings.Server, _mailSettings.Port, MailKit.Security.SecureSocketOptions.StartTls);
+                await smtp.AuthenticateAsync(_mailSettings.UserName, _mailSettings.Password);
+                await smtp.SendAsync(email);
+                await smtp.DisconnectAsync(true);
+            }
+        }
+
+        public async Task SendReceivedJobAdEmailAsync(EmailTemplateRequest emailTemplateRequest)
+        {
+            var template = new ReceivedJobAdTemplate();
+            string htmlBody = template.ReceviedJobAdTemplate(emailTemplateRequest.ToFullName, emailTemplateRequest.JobTitle, emailTemplateRequest.CompanyName);
+
+            var email = new MimeMessage();
+            email.From.Add(new MailboxAddress(_mailSettings.SenderFullName, _mailSettings.SenderEmail));
+            email.To.Add(new MailboxAddress(emailTemplateRequest.ToFullName, emailTemplateRequest.ToEmail));
+            email.Subject = $"Your Application for the {emailTemplateRequest.JobTitle} Position Has Been Received";
+
+            var bodyBuilder = new BodyBuilder { HtmlBody = htmlBody };
+            email.Body = bodyBuilder.ToMessageBody();
+
+            using (var smtp = new SmtpClient())
+            {
+                await smtp.ConnectAsync(_mailSettings.Server, _mailSettings.Port, MailKit.Security.SecureSocketOptions.StartTls);
+                await smtp.AuthenticateAsync(_mailSettings.UserName, _mailSettings.Password);
+                await smtp.SendAsync(email);
+                await smtp.DisconnectAsync(true);
+            }
+        }
+
+        public async Task SendFailedJobAdEmailAsync(string toEmail, string toFullName, string jobTitle, string companyName)
+        {
+            var template = new FailedJobAdTemplate();
+            string htmlBody = template.FailJobAdEmailTemplate(toFullName, jobTitle, companyName);
 
             var email = new MimeMessage();
             email.From.Add(new MailboxAddress(_mailSettings.SenderFullName, _mailSettings.SenderEmail));
             email.To.Add(new MailboxAddress(toFullName, toEmail));
-            email.Subject = $"Congratulations on Your Success for the {jobTitle} Position!";
+            email.Subject = $"Your Application for the {jobTitle} Position at {companyName}";
 
             var bodyBuilder = new BodyBuilder { HtmlBody = htmlBody };
             email.Body = bodyBuilder.ToMessageBody();

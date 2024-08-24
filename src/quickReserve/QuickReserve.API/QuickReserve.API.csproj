@@ -23,6 +23,7 @@
   <ItemGroup>
     <ProjectReference Include="..\..\core\Core.JWT\Core.JWT.csproj" />
     <ProjectReference Include="..\..\core\Core.Mailing\Core.Mailing.csproj" />
+    <ProjectReference Include="..\..\core\Core.Results\Core.Results.csproj" />
     <ProjectReference Include="..\QuickReserve.Application\QuickReserve.Application.csproj" />
     <ProjectReference Include="..\QuickReserve.Persistence\QuickReserve.Persistence.csproj" />
   </ItemGroup>

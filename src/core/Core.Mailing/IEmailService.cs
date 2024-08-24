@@ -10,6 +10,9 @@ namespace Core.Mailing
     {
         Task SendEmailAsync(Mail email);
 
-        Task SendSuccessJobAdEmailAsync(string toEmail, string toFullName, string jobTitle, string companyName);
+        Task SendSuccessJobAdEmailAsync(EmailTemplateRequest emailRequest);
+
+        Task SendReceivedJobAdEmailAsync(EmailTemplateRequest emailRequest);
+        Task SendFailedJobAdEmailAsync(EmailTemplateRequest emailRequest);
     }
 }

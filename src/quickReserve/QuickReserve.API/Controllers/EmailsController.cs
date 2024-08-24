@@ -1,4 +1,5 @@
 ﻿using Core.Mailing;
+using Core.Results;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -36,17 +37,54 @@ namespace QuickReserve.API.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> SendSuccessJobAdEmail(string toEmail, string toFullName, string jobTitle, string companyName)
+        public async Task<IActionResult> SendSuccessJobAdEmail(EmailTemplateRequest emailTemplateRequest)
         {
-            if (string.IsNullOrEmpty(toEmail))
+            if (string.IsNullOrEmpty(emailTemplateRequest.ToEmail))
             {
-                return BadRequest("Geçersiz e-posta verisi.");
+                return BadRequest(new ErrorResult("Geçersiz e-posta verisi."));
             }
 
             try
             {
-                await _emailService.SendSuccessJobAdEmailAsync(toEmail, toFullName, jobTitle, companyName);
-                return Ok("Başarıyla e-posta gönderildi.");
+                await _emailService.SendSuccessJobAdEmailAsync(emailTemplateRequest);
+                return Ok(new SuccessResult("Başarıyla e-posta gönderildi."));
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, $"E-posta gönderimi sırasında bir hata oluştu: {ex.Message}");
+            }
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> SendReceivedJobAdEmail(EmailTemplateRequest emailTemplateRequest)
+        {
+            if (string.IsNullOrEmpty(emailTemplateRequest.ToEmail))
+            {
+                return BadRequest(new ErrorResult("Geçersiz e-posta verisi."));
+            }
+
+            try
+            {
+                await _emailService.SendReceivedJobAdEmailAsync(emailTemplateRequest);
+                return Ok(new SuccessResult("Başvurunun alındığına dair e-posta başarıyla gönderildi."));
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, $"E-posta gönderimi sırasında bir hata oluştu: {ex.Message}");
+            }
+        }
+
+        public async Task<IActionResult> SendFailedJobAdEmail(EmailTemplateRequest emailTemplateRequest)
+        {
+            if (string.IsNullOrEmpty(emailTemplateRequest.ToEmail))
+            {
+                return BadRequest(new ErrorResult("Geçersiz e-posta verisi."));
+            }
+
+            try
+            {
+                await _emailService.SendFailedJobAdEmailAsync(emailTemplateRequest);
+                return Ok(new SuccessResult("Başvurunun olumsuz sonuçlandığına dair e-posta başarıyla gönderildi.."));
             }
             catch (Exception ex)
             {
