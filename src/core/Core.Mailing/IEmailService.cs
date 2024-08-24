@@ -9,5 +9,7 @@ namespace Core.Mailing
     public interface IEmailService
     {
         Task SendEmailAsync(Mail email);
+
+        Task SendSuccessJobAdEmailAsync(string toEmail, string toFullName, string jobTitle, string companyName);
     }
 }

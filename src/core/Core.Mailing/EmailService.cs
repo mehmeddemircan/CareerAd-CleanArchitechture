@@ -1,4 +1,5 @@
-﻿using MailKit.Net.Smtp;
+﻿using Core.Mailing.Templates;
+using MailKit.Net.Smtp;
 using Microsoft.Extensions.Configuration;
 using MimeKit;
 using System;
@@ -37,6 +38,28 @@ namespace Core.Mailing
 
           
 
+            email.Body = bodyBuilder.ToMessageBody();
+
+            using (var smtp = new SmtpClient())
+            {
+                await smtp.ConnectAsync(_mailSettings.Server, _mailSettings.Port, MailKit.Security.SecureSocketOptions.StartTls);
+                await smtp.AuthenticateAsync(_mailSettings.UserName, _mailSettings.Password);
+                await smtp.SendAsync(email);
+                await smtp.DisconnectAsync(true);
+            }
+        }
+
+        public async Task SendSuccessJobAdEmailAsync(string toEmail, string toFullName, string jobTitle, string companyName)
+        {
+            var template = new SuccessJobAdTemplate();
+            string htmlBody = template.CreateJobAdEmailTemplate(jobTitle, companyName, toFullName);
+
+            var email = new MimeMessage();
+            email.From.Add(new MailboxAddress(_mailSettings.SenderFullName, _mailSettings.SenderEmail));
+            email.To.Add(new MailboxAddress(toFullName, toEmail));
+            email.Subject = $"Congratulations on Your Success for the {jobTitle} Position!";
+
+            var bodyBuilder = new BodyBuilder { HtmlBody = htmlBody };
             email.Body = bodyBuilder.ToMessageBody();
 
             using (var smtp = new SmtpClient())
