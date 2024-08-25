@@ -5,6 +5,8 @@ using Core.CrossCuttingConcerns.Exceptions;
 using Core.JWT;
 using Core.JWT.Encryption;
 using Core.Mailing;
+using Serilog;
+using Serilog.Sinks.PostgreSQL;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 
 using Microsoft.IdentityModel.Tokens;
@@ -75,6 +77,24 @@ builder.Services.AddScoped<ICloudinaryService, CloudinaryService>();
 #region Email Config
 builder.Services.AddScoped<IEmailService, EmailService>();
 #endregion
+
+#region Serilog Yapýlandýrma
+builder.Host.UseSerilog((context, configuration) =>
+{
+    var connectionString = context.Configuration["Serilog:WriteTo:0:Args:connectionString"];
+
+    configuration
+        .ReadFrom.Configuration(context.Configuration)
+        .Enrich.FromLogContext()
+        .WriteTo.PostgreSQL(
+            connectionString: connectionString,
+            tableName: "Logs",
+            needAutoCreateTable: true)
+        .WriteTo.Console();
+});
+#endregion
+
+
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();

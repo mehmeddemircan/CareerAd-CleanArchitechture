@@ -93,15 +93,15 @@ namespace Core.Mailing
             }
         }
 
-        public async Task SendFailedJobAdEmailAsync(string toEmail, string toFullName, string jobTitle, string companyName)
+        public async Task SendFailedJobAdEmailAsync(EmailTemplateRequest emailTemplateRequest)
         {
             var template = new FailedJobAdTemplate();
-            string htmlBody = template.FailJobAdEmailTemplate(toFullName, jobTitle, companyName);
+            string htmlBody = template.FailJobAdEmailTemplate(emailTemplateRequest.ToFullName, emailTemplateRequest.JobTitle, emailTemplateRequest.CompanyName);
 
             var email = new MimeMessage();
             email.From.Add(new MailboxAddress(_mailSettings.SenderFullName, _mailSettings.SenderEmail));
-            email.To.Add(new MailboxAddress(toFullName, toEmail));
-            email.Subject = $"Your Application for the {jobTitle} Position at {companyName}";
+            email.To.Add(new MailboxAddress(emailTemplateRequest.ToFullName, emailTemplateRequest.ToEmail));
+            email.Subject = $"Your Application for the {emailTemplateRequest.JobTitle} Position at {emailTemplateRequest.CompanyName}";
 
             var bodyBuilder = new BodyBuilder { HtmlBody = htmlBody };
             email.Body = bodyBuilder.ToMessageBody();
@@ -114,5 +114,7 @@ namespace Core.Mailing
                 await smtp.DisconnectAsync(true);
             }
         }
+
+     
     }
 }

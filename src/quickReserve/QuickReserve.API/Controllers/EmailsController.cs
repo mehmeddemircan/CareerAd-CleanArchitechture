@@ -73,7 +73,7 @@ namespace QuickReserve.API.Controllers
                 return StatusCode(500, $"E-posta gönderimi sırasında bir hata oluştu: {ex.Message}");
             }
         }
-
+        [HttpPost]
         public async Task<IActionResult> SendFailedJobAdEmail(EmailTemplateRequest emailTemplateRequest)
         {
             if (string.IsNullOrEmpty(emailTemplateRequest.ToEmail))
