@@ -358,7 +358,15 @@ eyJhbGciOiAiSFMyNTYiLCAidHlwIjogIkpXVCJ9.eyJzdWIiOiAiMTIzNDU2Nzg5MCIsICJuYW1lIjo
 - **Header**, **Payload** ve **Signature** bileşenlerinden oluşur.
 - **Kimlik doğrulama** ve **yetkilendirme** işlemleri için yaygın olarak kullanılır.
 - **Token oluşturma**, **iletişim** ve **doğrulama** süreçleri ile güvenli veri aktarımı sağlar.
+## Refresh Token nedir ? 
+Refresh token, bir kullanıcının erişim token'ı (access token) süresi dolduğunda, tekrar oturum açmasına gerek kalmadan yeni bir erişim token'ı almasına olanak tanıyan bir güvenlik bileşenidir. Özellikle güvenlik açısından kritik olan uygulamalarda, sürekli olarak kullanıcıların erişim yetkilerini kontrol etmek ve oturumlarının devam etmesini sağlamak için kullanılır.
 
+## Refresh Token ve Access Token Süreci
+- **Kullanıcı Girişi**: Kullanıcı başarılı bir şekilde giriş yaptığında, sunucu hem access token hem de refresh token oluşturur ve bu token'ları kullanıcıya iletir.
+- **Erişim Token'ı Kullanımı**: Kullanıcı, API isteklerinde access token'ı kullanır. Bu token, kısa bir süre için geçerlidir (örneğin, 15 dakika).
+- **Token'ın Süresi Dolduğunda**: Access token süresi dolduğunda, kullanıcının artık API isteklerinde bu token'ı kullanması mümkün olmaz. Ancak, kullanıcının oturumu devam ediyorsa, refresh token ile yeni bir access token talep edebilir.
+- **Yeni Access Token Alma**: Kullanıcı, sunucuya refresh token'ı göndererek yeni bir access token talep eder. Sunucu refresh token'ı doğrularsa, yeni bir access token oluşturur ve bunu kullanıcıya iletir.
+- **Token Yenilenmesi**: Eğer refresh token da geçerliliğini yitirmişse veya sunucu tarafından iptal edilmişse, kullanıcıdan tekrar oturum açması istenir.
 
 # ASP.NET Core'da Extensions nedir ? Nasıl Çalışır ? 
 
