@@ -657,19 +657,19 @@ Loglar, güvenlik açıklarını tespit etmek ve denetim izleri sağlamak için 
 - **Warning**: Beklenmeyen bir durum meydana geldiğinde, ancak uygulama hala çalışmaya devam ettiğinde kullanılır.
 - **Error**: Uygulamada bir hata meydana geldiğinde kullanılır. Bu hata, işlemin başarısız olmasına neden olabilir.
 - **Critical**: Uygulamanın çökmesine veya büyük bir işlev kaybına neden olan hatalar için kullanılır.
-Sonuç : 
+**Sonuç :** 
 Loglama, yazılım geliştirme süreçlerinin ayrılmaz bir parçasıdır. Uygulamanın doğru çalıştığından emin olmak, hataları hızlıca tespit edip gidermek ve genel olarak yazılım kalitesini artırmak için loglama yapılır.
 
 ## Design Patterns 
-1. Dependency Injection (Bağımlılık Enjeksiyonu)
+**1. Dependency Injection** (Bağımlılık Enjeksiyonu)
 -  bir sınıfın ihtiyaç duyduğu bağımlılıkları dışarıdan sağlamayı amaçlayan bir tasarım desenidir. Bu desen, sınıfların birbirine sıkı sıkıya bağlı olmasını engeller ve daha esnek, test edilebilir kod yazılmasını sağlar.
 -  ConfigureServices metodunda bağımlılıkları kaydedebilir ve constructor aracılığıyla bu bağımlılıkları sınıflara enjekte edebilirsiniz.
-2. Repository Pattern
+**2. Repository Pattern**
 - Repository Pattern, veritabanı erişim kodunu soyutlayarak veri erişimini merkezi bir katmanda toplar
 -  Repository sınıfları aracılığıyla veritabanı işlemleri gerçekleştirilir.
-3. Unit Of Work Pattern
+**3. Unit Of Work Pattern**
 - Unit of Work deseni, bir işlem birimi içinde birden fazla repository ile çalışırken, işlemleri tek bir noktadan yönetmeyi sağlar. Böylece, aynı işlemde yapılan tüm veri değişiklikleri bir arada yönetilir ve gerekirse tümü geri alınabilir.
-4. Singleton Pattern
+**4. Singleton Pattern**
 - Singleton Pattern, bir sınıfın yalnızca bir örneğinin olmasını garanti eden bir desendir.
-5. Mediator Pattern
+**5. Mediator Pattern**
 - Mediator Pattern, bileşenler arasındaki doğrudan iletişimi önleyerek, iletişimin merkezi bir arabulucu aracılığıyla yapılmasını sağlar. Bu desen, özellikle karmaşık iş akışlarında kullanışlıdır.
