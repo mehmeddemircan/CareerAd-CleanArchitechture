@@ -624,3 +624,44 @@ Referans Tipleri:
 -  Referans tipleri bellekte **heap** adı verilen bölgede saklanır
 -  Referans tiplerinin varsayılan değeri null'dır, yani başlangıçta hiçbir nesneye referans etmezler.
 -  örnekler : class, interface
+
+### Static Classlar
+static classlar, C# programlamada yalnızca statik üyeleri (metotlar, özellikler, alanlar) barındıran ve örneklenemeyen sınıflardır. static sınıflar, genel olarak ortak fonksiyonları, yardımcı metotları veya uygulamanın herhangi bir yerinden erişilebilecek global verileri gruplamak için kullanılır.
+- **Örneklenemez**: static bir sınıfın örneği oluşturulamaz. Bu sınıftaki üyelere doğrudan sınıf adı ile erişilir.
+- **Sadece Static Üyeler Barındırır**: static sınıflar sadece static metotlar, özellikler ve alanlar içerebilir. Bu sınıf içerisinde normal üye metot veya özellikler tanımlanamaz.
+- **Kalıtım Desteklemez**: static sınıflar başka bir sınıftan türetilemez veya türetilmiş olamaz.
+
+## Loglama nedir ve Neden Kullanılır ? 
+Loglama, bir uygulamanın çalışma zamanında meydana gelen olayların, hataların, kullanıcı eylemlerinin veya sistem durumlarının kaydedilmesi işlemidir. 
+
+- Hata Tespiti ve Sorun Giderme:
+Uygulama çalışırken meydana gelen hataları izlemek ve kaydetmek için loglama kullanılır. Bu sayede geliştiriciler, hatanın nerede ve neden meydana geldiğini anlayabilir ve çözüm üretebilir.
+- Uygulama Performansını İzleme:
+- Kullanıcı Etkileşimlerini Takip Etme:
+- Güvenlik ve Denetim:
+Loglar, güvenlik açıklarını tespit etmek ve denetim izleri sağlamak için kullanılır. Örneğin, kimlerin hangi verilere eriştiği veya hangi işlemleri yaptığı kaydedilebilir.
+- Yasal Gereksinimler
+## Log Seviyeleri
+
+- **Trace**: En ayrıntılı log seviyesi. Genellikle bir işlemin her adımını izlemek için kullanılır.
+- **Debug**: Hata ayıklama sırasında kullanılır. Geliştirme aşamasında detaylı bilgi sağlar.
+- **Information**: Uygulamanın normal çalışma durumunu gösteren bilgi mesajları içerir.
+- **Warning**: Beklenmeyen bir durum meydana geldiğinde, ancak uygulama hala çalışmaya devam ettiğinde kullanılır.
+- **Error**: Uygulamada bir hata meydana geldiğinde kullanılır. Bu hata, işlemin başarısız olmasına neden olabilir.
+- **Critical**: Uygulamanın çökmesine veya büyük bir işlev kaybına neden olan hatalar için kullanılır.
+Sonuç : 
+Loglama, yazılım geliştirme süreçlerinin ayrılmaz bir parçasıdır. Uygulamanın doğru çalıştığından emin olmak, hataları hızlıca tespit edip gidermek ve genel olarak yazılım kalitesini artırmak için loglama yapılır.
+
+## Design Patterns 
+1. Dependency Injection (Bağımlılık Enjeksiyonu)
+-  bir sınıfın ihtiyaç duyduğu bağımlılıkları dışarıdan sağlamayı amaçlayan bir tasarım desenidir. Bu desen, sınıfların birbirine sıkı sıkıya bağlı olmasını engeller ve daha esnek, test edilebilir kod yazılmasını sağlar.
+-  ConfigureServices metodunda bağımlılıkları kaydedebilir ve constructor aracılığıyla bu bağımlılıkları sınıflara enjekte edebilirsiniz.
+2. Repository Pattern
+- Repository Pattern, veritabanı erişim kodunu soyutlayarak veri erişimini merkezi bir katmanda toplar
+-  Repository sınıfları aracılığıyla veritabanı işlemleri gerçekleştirilir.
+3. Unit Of Work Pattern
+- Unit of Work deseni, bir işlem birimi içinde birden fazla repository ile çalışırken, işlemleri tek bir noktadan yönetmeyi sağlar. Böylece, aynı işlemde yapılan tüm veri değişiklikleri bir arada yönetilir ve gerekirse tümü geri alınabilir.
+4. Singleton Pattern
+- Singleton Pattern, bir sınıfın yalnızca bir örneğinin olmasını garanti eden bir desendir.
+5. Mediator Pattern
+- Mediator Pattern, bileşenler arasındaki doğrudan iletişimi önleyerek, iletişimin merkezi bir arabulucu aracılığıyla yapılmasını sağlar. Bu desen, özellikle karmaşık iş akışlarında kullanışlıdır.
