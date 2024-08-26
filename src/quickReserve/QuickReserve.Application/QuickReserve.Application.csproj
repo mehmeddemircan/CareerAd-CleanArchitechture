@@ -28,7 +28,6 @@
 
   <ItemGroup>
     <Folder Include="Features\Answers\Validations\" />
-    <Folder Include="Features\Companies\Validations\" />
     <Folder Include="Features\JobAdApplications\Validations\" />
     <Folder Include="Features\JobAdForms\Validations\" />
     <Folder Include="Features\JobAds\Validations\" />

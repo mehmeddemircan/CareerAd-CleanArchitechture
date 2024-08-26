@@ -11,15 +11,15 @@ namespace Core.Constants
 
         #region Common Messages
         public const string UserIdMustBeGreaterThanZero = "UserId must be greater than 0.";
-        public const string TagIdMustBeGreaterThanZero = "TagId must be greater than 0.";
-        public const string BlogIdMustBeGreaterThanZero = "BlogId must be greater than 0.";
-        public const string CommentIdMustBeGreaterThanZero = "CommentId must be greater than 0.";
         public const string IndustryTypeIdMustBeGreaterThanZero = "IndustryTypeId must be greater than 0.";
-
+  
         public const string TitleIsRequired = "TitleIsRequired";
+        public const string NameIsRequired = "Name is required";
         public const string ContentIsRequired = "Content is required";
         public const string DescriptionIsRequired = "Description is required";
         public const string TitleMaxCharacterExceed = "Title cannot exceed 255 characters.";
+        public const string NameMaxCharacterExceed = "Name cannot exceed 100 characters.";
+        public const string WebsiteIsRequired = "Website is required";
         public const string DescriptionMaxCharacterExceed = "Description cannot exceed 500 characters.";
         public const string ContentMaxCharacterExceed = "Content cannot exceed 500 characters.";
         public const string TopicIsRequired = "Topic is required";

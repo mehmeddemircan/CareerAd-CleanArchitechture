@@ -13,7 +13,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Logging\Serilog\" />
+    <Folder Include="Logging\" />
   </ItemGroup>
 
 </Project>

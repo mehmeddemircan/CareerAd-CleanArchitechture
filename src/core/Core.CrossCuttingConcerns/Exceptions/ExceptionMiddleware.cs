@@ -34,6 +34,8 @@ public class ExceptionMiddleware
         if (exception.GetType() == typeof(BusinessException)) return CreateBusinessException(context, exception);
         if (exception.GetType() == typeof(AuthorizationException))
             return CreateAuthorizationException(context, exception);
+        if (exception.GetType() == typeof(NullReferenceException))
+            return CreateNullReferenceException(context, exception);
         return CreateInternalException(context, exception);
     }
 
@@ -81,6 +83,19 @@ public class ExceptionMiddleware
         }.ToString());
     }
 
+    private Task CreateNullReferenceException(HttpContext context, Exception exception)
+    {
+        context.Response.StatusCode = Convert.ToInt32(HttpStatusCode.BadRequest);
+
+        return context.Response.WriteAsync(new NullReferenceProblemDetails
+        {
+            Status = StatusCodes.Status400BadRequest,
+            Type = "https://example.com/probs/internal",
+            Title = "Null Reference exception",
+            Detail = exception.Message,
+            Instance = ""
+        }.ToString());
+    }
     private Task CreateInternalException(HttpContext context, Exception exception)
     {
         context.Response.StatusCode = Convert.ToInt32(HttpStatusCode.InternalServerError);
