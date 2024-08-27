@@ -673,3 +673,11 @@ Loglama, yazılım geliştirme süreçlerinin ayrılmaz bir parçasıdır. Uygul
 - Singleton Pattern, bir sınıfın yalnızca bir örneğinin olmasını garanti eden bir desendir.
 **5. Mediator Pattern**
 - Mediator Pattern, bileşenler arasındaki doğrudan iletişimi önleyerek, iletişimin merkezi bir arabulucu aracılığıyla yapılmasını sağlar. Bu desen, özellikle karmaşık iş akışlarında kullanışlıdır.
+
+## CancellationToken Nedir?
+ - CancellationToken, genellikle bir işlemi veya asenkron görevi iptal etmek için kullanılan bir sinyaldir. İptal sinyali gönderildiğinde, işlem veya görev iptal edilebilir, bu da kaynakları serbest bırakabilir veya uygulamanın daha iyi yanıt vermesini sağlar.
+
+### Kullanım Alanları
+- **Asenkron Metodlarda**: Asenkron metodlarda CancellationToken kullanarak, bir işlem çalışırken kullanıcı veya sistem tarafından bir iptal talebi geldiğinde işlemi durdurabilirsiniz.
+- **Uzun Süren İşlemler**: Web istekleri, veri işleme, dosya okuma/yazma gibi uzun süren işlemlerde CancellationToken kullanarak işlemi kullanıcı talebine göre durdurabilirsiniz.
+- **Multi-threading**: Çoklu iş parçacığı ortamlarında, birden fazla işlem veya görev çalışırken, belirli bir iş parçacığını veya tüm iş parçacıklarını iptal etmek için CancellationToken kullanabilirsiniz.
