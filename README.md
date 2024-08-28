@@ -681,3 +681,10 @@ Loglama, yazılım geliştirme süreçlerinin ayrılmaz bir parçasıdır. Uygul
 - **Asenkron Metodlarda**: Asenkron metodlarda CancellationToken kullanarak, bir işlem çalışırken kullanıcı veya sistem tarafından bir iptal talebi geldiğinde işlemi durdurabilirsiniz.
 - **Uzun Süren İşlemler**: Web istekleri, veri işleme, dosya okuma/yazma gibi uzun süren işlemlerde CancellationToken kullanarak işlemi kullanıcı talebine göre durdurabilirsiniz.
 - **Multi-threading**: Çoklu iş parçacığı ortamlarında, birden fazla işlem veya görev çalışırken, belirli bir iş parçacığını veya tüm iş parçacıklarını iptal etmek için CancellationToken kullanabilirsiniz.
+
+## IEnumerable ile IQueryable arasında ki farklar 
+- **IEnumerable:** Bellekteki koleksiyonları temsil eder. LINQ sorgusu, veritabanından verileri belleğe çektikten sonra uygulanır.sorgu hemen çalışır, daha az performanslıdır
+- **IQueryable:** Veritabanı gibi uzak veri kaynaklarıyla çalışmak için kullanılır. LINQ sorgusu veritabanına gönderilir ve sorgu veritabanında çalıştırılır. sorgu sonuç talep edilince çalışır, daha performanslıdır.
+
+## Base Anahtar Kelimesi nedir ? 
+- **base Anahtar Kelimesi:** base anahtar kelimesi, türetilmiş (alt) sınıfta, temel (üst) sınıftaki bir üyeye (metot, özellik, vb.) erişmek için kullanılır. Bu durumda, CompanyConfiguration sınıfının Configure metodunda, base.Configure(builder); ifadesi, BaseEntityConfiguration<TEntity> sınıfındaki Configure metodunu çağırır.
